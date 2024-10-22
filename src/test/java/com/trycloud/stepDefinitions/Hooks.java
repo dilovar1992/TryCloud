@@ -1,5 +1,6 @@
 package com.trycloud.stepDefinitions;
 
+import com.trycloud.utility.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -8,7 +9,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.time.Duration;
 
-import static com.TryCloud.utility.Driver.getDriver;
+import static com.trycloud.utility.Driver.getDriver;
 
 public class Hooks {
 
@@ -29,7 +30,7 @@ public class Hooks {
 
         if (scenario.isFailed()) {
 
-            byte[] screenshot = ((TakesScreenshot) com.TryCloud.utility.Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            byte[] screenshot = ((TakesScreenshot) com.trycloud.utility.Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
 
         }
