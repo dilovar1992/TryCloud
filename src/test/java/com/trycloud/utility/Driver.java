@@ -1,11 +1,10 @@
-package com.trycloud.utility;
+package com.TryCloud.utility;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.edge.*;
+import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.remote.*;
 
 import java.net.*;
 
@@ -22,7 +21,7 @@ public class Driver {
     public static WebDriver getDriver(){
 
         //String for web browser to read it from system and configuration file
-        String browser = System.getProperty("browser") != null ? System.getProperty("browser") : com.TryCloud.utility.ConfigurationReader.getProperty("browser");
+        String browser = System.getProperty("browser") != null ? System.getProperty("browser") : ConfigurationReader.getProperty("browser");
 
         if (driverpool.get() == null) {
             switch (browser) {
@@ -60,7 +59,7 @@ public class Driver {
 
     public static void closeDriver(){
         if (driverpool.get() != null){
-            //terminates everythings out of existance
+            //terminates everything out of existence
             driverpool.get().quit();
             //reassign driverpool back to null so that singleton drive worked
             driverpool.remove();
