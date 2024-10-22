@@ -1,4 +1,11 @@
-package com.TryCloud.utility;
+package com.trycloud.utility;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.*;
 
@@ -15,7 +22,7 @@ public class Driver {
     public static WebDriver getDriver(){
 
         //String for web browser to read it from system and configuration file
-        String browser = System.getProperty("browser") != null ? System.getProperty("browser") : ConfigurationReader.getProperty("browser");
+        String browser = System.getProperty("browser") != null ? System.getProperty("browser") : com.TryCloud.utility.ConfigurationReader.getProperty("browser");
 
         if (driverpool.get() == null) {
             switch (browser) {
@@ -37,7 +44,7 @@ public class Driver {
                         URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("chrome");
-                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                        driverpool.set(new RemoteWebDriver(url, desiredCapabilities));
                         //driverPool.set(new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"),desiredCapabilities));
 
                     } catch (Exception e) {
