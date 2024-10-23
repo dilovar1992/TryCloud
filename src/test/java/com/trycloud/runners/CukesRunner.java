@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber",
         },
         features = "src/test/resources/features",
-        glue = "trycloud/step_definitions",
+        glue = "trycloud/stepDefinitions",
         dryRun = false,
         tags = "",
         publish = true // generating a report with public link
