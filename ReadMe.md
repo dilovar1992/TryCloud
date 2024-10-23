@@ -35,5 +35,6 @@ The project is to update our ui testing skill
 6. Now push your code
 
 ## User Stories
+To be updated October 23,2024
 
 ![User Stories](src/test/resources/User-Stories-Distribution.png)
