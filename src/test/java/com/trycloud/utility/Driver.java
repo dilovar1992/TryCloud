@@ -1,4 +1,4 @@
-package com.TryCloud.utility;
+package com.trycloud.utility;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
