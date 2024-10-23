@@ -38,3 +38,21 @@ The project is to update our ui testing skill
 To be updated October 23,2024
 
 ![User Stories](src/test/resources/User-Stories-Distribution.png)
+
+# Naming convention:
+if you see same functionality name: share the page and communicate with each other
+
+      Feature file: US01_functionalityName_nameInitials.feature
+      EX:           US12_customerInfo_OC.feature
+      
+      Pages class:  PageName_page_nameInitials.java
+      EX:           CustomerInfo_page_OC.java
+      
+      Step Definition: FunctionalityName_stepDef_nameInitials.java
+      EX:              CustomerInfo_stepDef_OC.java
+
+      GIT branch name: FirstName
+      EX:              Metehan
+
+      TC in Jira: US#AC# summary
+      EX:         US12AC1 - Users should see 8 filter items on the Accounts page 
