@@ -1,6 +1,8 @@
-package com.TryCloud.utility;
+package com.trycloud.utility;
 
 import java.io.*;
+import java.security.InvalidParameterException;
+import java.text.MessageFormat;
 import java.util.*;
 
 public class ConfigurationReader {
@@ -21,8 +23,14 @@ public class ConfigurationReader {
     }
 
     //methods that read from config file
-    public static String getProperty(String key){
-        return properties.getProperty(key);
+    //should update so that it sends error when the keyword is mistyped or not present
+
+    public static String getProperty(String keyword) {
+        if(properties.getProperty(keyword) == null) {
+            throw new InvalidParameterException(MessageFormat.format("Missing value for key {0}! OR key does not exist", keyword));
+        }
+        //properties object have getProperty method
+        return properties.getProperty(keyword);
     }
 
 }

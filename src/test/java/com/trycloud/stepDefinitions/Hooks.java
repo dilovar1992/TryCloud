@@ -1,6 +1,7 @@
-package com.TryCloud.stepDefinitions;
+package com.trycloud.stepDefinitions;
 
-import com.TryCloud.utility.*;
+import com.trycloud.utility.ConfigurationReader;
+import com.trycloud.utility.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -9,7 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.time.Duration;
 
-import static com.TryCloud.utility.Driver.getDriver;
+import static com.trycloud.utility.Driver.getDriver;
 
 public class Hooks {
 
