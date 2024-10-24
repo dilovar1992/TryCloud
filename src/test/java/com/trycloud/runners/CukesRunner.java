@@ -12,9 +12,9 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber",
         },
         features = "src/test/resources/features",
-        glue = "trycloud/stepDefinitions",
+        glue = "com/trycloud/stepDefinitions",
         dryRun = false,
-        tags = "",
+        tags = "@us01",
         publish = true // generating a report with public link
         // monochrome = false
 
