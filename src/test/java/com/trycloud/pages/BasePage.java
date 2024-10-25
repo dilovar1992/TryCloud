@@ -37,10 +37,8 @@ public abstract class BasePage {
     public WebElement contactsIcon;
 
     public void navigateToModule(String module){
-        //remove case sensitivity
-        module = module.toLowerCase();
 
-        WebElement moduleLink = Driver.getDriver().findElement(By.cssSelector(">a[aria-label='" + module + "']"));
+        WebElement moduleLink = Driver.getDriver().findElement(By.cssSelector("ul[id='appmenu']>li>a[aria-label='" + module + "']"));
 
         //explicit wait
         //TODO
