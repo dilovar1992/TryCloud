@@ -37,7 +37,7 @@ The project is to update our ui testing skill
 ## User Stories
 To be updated October 23,2024
 
-![User Stories](src/test/resources/User-Stories-Distribution.png)
+![User Stories](src/test/resources/Updated-User-Stories-Distribution.png)
 
 # Naming convention:
 if you see same functionality name: share the page and communicate with each other
