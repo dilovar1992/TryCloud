@@ -1,6 +1,7 @@
 package com.trycloud.stepDefinitions;
 
 import com.trycloud.pages.CalendarPage;
+import com.trycloud.utility.BrowserUtil;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,11 +66,14 @@ public class Calendar_stepDef_AE {
     public void user_sees_the_week_view_of_the_calendar() {
         today = LocalDate.now();
         List<WebElement> datesInWeekView = calendarPage.datesInWeekView;
-        List<String> actualWeekDates = new ArrayList<>();
 
-        for (WebElement date : datesInWeekView) {
-            actualWeekDates.add(date.getText());
-        }
+        List<String> actualWeekDates = BrowserUtil.getTextEachWebElement(datesInWeekView);
+
+//        List<String> actualWeekDates = new ArrayList<>();
+//
+//        for (WebElement date : datesInWeekView) {
+//            actualWeekDates.add(date.getText());
+//        }
         LOG.info("Actual week dates from calendar {}", actualWeekDates);
 
         List<String> expectedWeekDates = new ArrayList<>();
@@ -84,6 +89,16 @@ public class Calendar_stepDef_AE {
 
     @Then("user sees the month view of the calendar")
     public void user_sees_the_month_view_of_the_calendar() {
+
+        List<WebElement> dayNamesInMonthView = calendarPage.dayNamesInMonthView;
+        List<String> actualDayNames = BrowserUtil.getTextEachWebElement(dayNamesInMonthView);
+        LOG.info("Actual day names from calendar {}", actualDayNames);
+
+        String [] dayNames = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+        List<String> expectedDayNames = new ArrayList<>(Arrays.stream(dayNames).toList());
+        LOG.info("Expected day names {}", expectedDayNames);
+
+        Assert.assertEquals(actualDayNames,expectedDayNames);
 
     }
 

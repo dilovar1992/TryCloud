@@ -32,8 +32,8 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "(//div[@id='rightClickDetector']/following-sibling::div//button)[3]")
     public WebElement monthView;
 
-    @FindBy(xpath = "(//main[@id='app-content-vue']//table)[2]//th")
-    public WebElement dayNamesInMonthView;
+    @FindBy(xpath = "(//main[@id='app-content-vue']//table)[2]//th//a")
+    public List<WebElement> dayNamesInMonthView;
 
     /**
      * clicks the given calendar view present in calendar view selection menu
