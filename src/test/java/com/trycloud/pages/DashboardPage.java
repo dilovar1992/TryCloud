@@ -7,34 +7,48 @@ import org.openqa.selenium.support.*;
 import java.util.*;
 
 public class DashboardPage extends BasePage {
-    @FindBy(xpath = "//ul[@id='appmenu']/li")
-    public List<WebElement> modules;
+    //corner user part
     @FindBy(id = "settings")
     public WebElement userCircle;
+    @FindBy(className = "user-status-menu-item__toggle")
+    public WebElement StatusOptions;
     @FindBy(css = "div.user-status-menu-item>span")
     public WebElement userName;
+
+    //widgets
+    @FindBy(className = "icon-user-status-online")
+    public WebElement Status;
+    @FindBy(className = "icon-weather-status")
+    public WebElement Weather;
+    @FindBy(className = "icon-calendar-dark")
+    public WebElement UpcomingEvents;
+    @FindBy(className = "icon-deck")
+    public WebElement UpcomingCards;
+    @FindBy(className = "icon-files-dark")
+    public WebElement RecommendedFiles;
+    @FindBy(className = "icon-talk")
+    public WebElement TalkMentions;
+    @FindBy(className = "icon-user-status")
+    public WebElement RecentStatus;
+
+
+
+    //other elements
+    @FindBy(xpath = "(//button)[3]")
+    public WebElement closeButton;
     @FindBy(xpath = "//a[.='Customize']")
     public WebElement customizeButton;
-    @FindBy(css = "li>input#status-checkbox-status")
-    public WebElement Status;
-    @FindBy(css = "li>input#status-checkbox-weather")
-    public WebElement Weather;
-    @FindBy(css = "li>input#panel-checkbox-calendar")
-    public WebElement UpcomingEvents;
-    @FindBy(css = "li>input#panel-checkbox-deck")
-    public WebElement UpcomingCards;
-    @FindBy(css = "li>input#panel-checkbox-recommendations")
-    public WebElement RecommendedFiles;
-    @FindBy(css = "li>input#panel-checkbox-spreed")
-    public WebElement TalkMentions;
-    @FindBy(css = "li>input#panel-checkbox-user_status")
-    public WebElement RecentStatus;
 
 
     //return webelement of modules
     public WebElement modules(String module) {
         return Driver.getDriver().findElement(By.xpath("//ul[@id='appmenu']/li/a[@aria-label='" + module + "']"));
 
+    }
+    //status type
+    public void setStatus(String stat){
+        WebElement element=Driver.getDriver().findElement(By.xpath("//label[@for='user-status-online-status-"+stat.toLowerCase()+"']"));
+        element.click();
     }
 
     //for choosing widgets
