@@ -17,6 +17,7 @@ Feature: User should be able to view Daily-Weekly-Monthly calendar and create ne
     And user selects "Week" view from the menu
     Then user sees the week view of the calendar
 
+  @US05AC3
   Scenario: User can display monthly calendar view
     Given the user already logged in
     When user navigates to "Calendar" module
