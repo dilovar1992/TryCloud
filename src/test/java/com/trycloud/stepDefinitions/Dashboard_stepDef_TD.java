@@ -5,7 +5,10 @@ import com.trycloud.utility.*;
 import io.cucumber.java.en.*;
 import org.junit.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.support.ui.*;
 
+import java.time.*;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -13,6 +16,7 @@ import static org.junit.Assert.*;
 public class Dashboard_stepDef_TD {
     LoginPage loginPage=new LoginPage();
     DashboardPage dash=new DashboardPage();
+    Actions action=new Actions(Driver.getDriver());
     @Given("the user already logged in")
     public void the_user_already_logged_in() {
       String username= ConfigurationReader.getProperty("username");
@@ -28,7 +32,7 @@ public class Dashboard_stepDef_TD {
             //then assert isDisplayed or not
             assertTrue(dash.modules(expectedModule).isDisplayed());
         }
-        //i could not extract text, why?
+        //I could not extract text, why?
 
 
     }
@@ -50,8 +54,28 @@ public class Dashboard_stepDef_TD {
     public void user_clicks_on_customize_button() {
        dash.customizeButton.click();
     }
-    @Then("user can select any {string}")
-    public void user_can_select_any(String widget) {
-        dash.TalkMentions.click();
+
+    @Then("user can select any widget like {string}")
+    public void user_can_select_any_widget_like(String widget) {
+        dash.chooseWidget(widget);
+    }
+
+    //scenario3
+    @When("user clicks on Set Status button from account dropdown")
+    public void user_clicks_on_set_status_button_from_account_dropdown() {
+        // click user
+        dash.userCircle.click();
+        //click set status
+        dash.StatusOptions.click();
+
+
+    }
+    @Then("user can select {string} from status options")
+    public void user_can_select_from_status_options(String status) {
+
+        //chooses the status
+        dash.setStatus(status);
+        //close the window
+       // dash.closeButton.click();
     }
 }

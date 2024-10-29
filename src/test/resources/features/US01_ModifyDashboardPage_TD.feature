@@ -16,16 +16,17 @@ Feature: User should be able to modify Dashboard page
       | Deck      |
 
     And user should be able to see "Employee61"
-@wip
+
+
   Scenario: user can select widgets
     Given the user already logged in
     When user clicks on Customize button
-    Then user can select any "Weather"
+    Then user can select any widget like "Weather"
 
 
   Scenario: user can select any status button
     Given the user already logged in
     When user clicks on Set Status button from account dropdown
-    Then user can select any of the Status options
+    Then user can select "Dnd" from status options
 
 
