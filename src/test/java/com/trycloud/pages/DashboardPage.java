@@ -4,14 +4,18 @@ import com.trycloud.utility.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 
+import java.security.InvalidParameterException;
+import java.text.MessageFormat;
 import java.util.*;
 
 public class DashboardPage extends BasePage {
     //corner user part
     @FindBy(id = "settings")
-    public WebElement userCircle;
+    public WebElement userCircle;//profile menu button
     @FindBy(className = "user-status-menu-item__toggle")
     public WebElement StatusOptions;
+
+
     @FindBy(css = "div.user-status-menu-item>span")
     public WebElement userName;
 
@@ -32,7 +36,6 @@ public class DashboardPage extends BasePage {
     public WebElement RecentStatus;
 
 
-
     //other elements
     @FindBy(xpath = "(//button)[3]")
     public WebElement closeButton;
@@ -45,9 +48,10 @@ public class DashboardPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//ul[@id='appmenu']/li/a[@aria-label='" + module + "']"));
 
     }
+
     //status type
-    public void setStatus(String stat){
-        WebElement element=Driver.getDriver().findElement(By.xpath("//label[@for='user-status-online-status-"+stat.toLowerCase()+"']"));
+    public void setStatus(String stat) {
+        WebElement element = Driver.getDriver().findElement(By.xpath("//label[@for='user-status-online-status-" + stat.toLowerCase() + "']"));
         element.click();
     }
 
@@ -78,7 +82,38 @@ public class DashboardPage extends BasePage {
             default:
                 System.out.println("Locators does not work");
 
-
         }
+    }
+
+    public WebElement getProfileMenuItem(String itemName) {
+        itemName = itemName.toLowerCase();
+        String locator = "";
+        int index = 0; //index of xpath, not list
+
+        if (itemName.equals("username")) {
+            locator = "(//nav[@id='expanddiv']//li)[1]//span";
+
+        } else if (itemName.equals("status")) {
+            locator = "(//nav[@id='expanddiv']//li)[1]//a";
+
+        } else {
+            switch (itemName) {
+                case "settings":
+                    index = 2;
+                    break;
+                case "help":
+                    index = 3;
+                    break;
+                case "log out":
+                    index = 4;
+                    break;
+                default:
+                    throw new InvalidParameterException(MessageFormat.format("Invalid Menu ITEM {0}", itemName));
+            }
+
+            locator = "(//nav[@id='expanddiv']//li)[" + index + "]";
+        }
+
+        return Driver.getDriver().findElement(By.xpath(locator));
     }
 }
