@@ -19,9 +19,11 @@ public class Hooks {
     @Before
     public void setupMethod() {
 
-        getDriver().manage().window().maximize();
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        getDriver().get(ConfigurationReader.getProperty("url"));
+
+     getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+     getDriver().manage().window().maximize();
+     getDriver().get(ConfigurationReader.getProperty("url"));
+
     }
 
     /*
