@@ -1,5 +1,6 @@
 package com.trycloud.stepDefinitions;
 
+import com.trycloud.utility.BrowserUtil;
 import com.trycloud.utility.ConfigurationReader;
 import com.trycloud.utility.Driver;
 import io.cucumber.java.After;
@@ -17,6 +18,7 @@ public class Hooks {
     //import the @Before coming from io.cucumber.java
     @Before
     public void setupMethod() {
+
 
      getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
      getDriver().manage().window().maximize();
@@ -37,6 +39,7 @@ public class Hooks {
 
         }
 
+        BrowserUtil.sleep(2);
         Driver.closeDriver();
     }
 }
