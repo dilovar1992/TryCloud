@@ -26,7 +26,7 @@ public class Dashboard_stepDef_TD {
 
     }
     @Then("user should be able to see following modules")
-    public void user_should_be_able_to_see_following_modules(List<String> expectedModules)  {
+    public void zÅuser_should_be_able_to_see_following_modules(List<String> expectedModules)  {
         for (String expectedModule : expectedModules) {
             //each module name is used in locators to return Webelement
             //then assert isDisplayed or not
@@ -41,7 +41,7 @@ public class Dashboard_stepDef_TD {
     @And("user should be able to see {string}")
     public void userShouldBeAbleToSee(String expectedUserName)  {
         dash.userCircle.click();
-        BrowserUtil.sleep(3000);
+        BrowserUtil.sleep(3);
 
         //actual username
         String actualUserName=dash.userName.getText();
