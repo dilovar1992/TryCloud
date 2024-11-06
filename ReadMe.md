@@ -2,17 +2,12 @@
 
 # Try Cloud UI test
 
-The project is to update our ui testing skill
+### Whether it is small or big, every commit is a step towards defining your feature.
+I hope this project will be useful to you. Please take responsibility of your task and finish in timely manner.
 
-## TASK
+#
+<img src="https://i.pinimg.com/originals/98/90/54/989054cca8af0c7f60c7fad86d077c36.gif" height="200" />
 
-| Member  | Tasks                              |
-|---------|------------------------------------|
-| Amine   | Configuration,BasePage,            |
-| Dilovar | Driver                             |
-| Ziyoda  | pom.xml,Hooks                      |
-| KB      | CukesRunner and Failed Test runner |
-| Metehan | BrowseUtil                         |
 
 
 ## Acknowledgements
@@ -20,6 +15,7 @@ The project is to update our ui testing skill
 - Guys you can copy and paste, but I really suggest you to do it yourself
 - Please, after cloning the project, create your own branch
 - Work on your branch
+- Happy paths are coming
 
 
 
@@ -32,12 +28,12 @@ The project is to update our ui testing skill
 3. work on your branch
 4. do not push ! :)
 5. fetch and update your project
-6. Now push your code
+6. now push your code
 
 ## User Stories
-To be updated October 23,2024
+Updated November 5th,2024
 
-![User Stories](src/test/resources/Updated-User-Stories-Distribution.png)
+![User Stories](src/test/resources/Updated-User-Story-Distribution-3.png)
 
 # Naming convention:
 if you see same functionality name: share the page and communicate with each other
@@ -52,7 +48,7 @@ if you see same functionality name: share the page and communicate with each oth
       EX:              CustomerInfo_stepDef_OC.java
 
       GIT branch name: FirstName
-      EX:              Metehan
+      EX:              Dilovar
 
       TC in Jira: US#AC# summary
       EX:         US12AC1 - Users should see 8 filter items on the Accounts page 
