@@ -40,8 +40,8 @@ public class TalkModule_stepDef_AE {
 
     }
 
-    @When("user opens the elipses menu")
-    public void user_opens_the_elipses_menu() {
+    @When("user opens the ellipses menu")
+    public void user_opens_the_ellipses_menu() {
 
     }
 
