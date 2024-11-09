@@ -30,10 +30,6 @@ I hope this project will be useful to you. Please take responsibility of your ta
 5. fetch and update your project
 6. now push your code
 
-## User Stories
-Updated November 5th,2024
-
-![User Stories](src/test/resources/Updated-User-Story-Distribution-3.png)
 
 # Naming convention:
 if you see same functionality name: share the page and communicate with each other
