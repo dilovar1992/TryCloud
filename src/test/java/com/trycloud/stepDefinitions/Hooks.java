@@ -20,7 +20,7 @@ public class Hooks {
     public void setupMethod() {
 
 
-     getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+     getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
      getDriver().manage().window().maximize();
      getDriver().get(ConfigurationReader.getProperty("url"));
 
