@@ -69,4 +69,7 @@ public class FileModule_stepDef_AE {
     }
 
 
+    @And("user select Upload file from new item menu")
+    public void userSelectUploadFileFromNewItemMenu() {
+    }
 }
