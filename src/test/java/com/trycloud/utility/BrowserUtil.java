@@ -48,5 +48,14 @@ public class BrowserUtil {
 
         explicitWait.until(ExpectedConditions.visibilityOf(element));
     }
+    /**
+     * waits for elements click ability for interaction
+     * @param element target element for waiting conditions
+     */
+    public static void waitForElementClickAbility(WebElement element){
+        WebDriverWait explicitWait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
+
+        explicitWait.until(ExpectedConditions.elementToBeClickable(element));
+    }
 
 }
