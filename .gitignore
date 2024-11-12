@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/logs/
+/.idea/git_toolbox_blame.xml
+/.idea/git_toolbox_prj.xml
+/.idea/vcs.xml
+/.idea/uiDesigner.xml
+/src/test/java/com/trycloud/pages/TestPractice.java
