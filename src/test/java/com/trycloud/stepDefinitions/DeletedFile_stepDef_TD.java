@@ -45,7 +45,17 @@ public class DeletedFile_stepDef_TD {
         deleted.newNameForFolder.click();
         deleted.newNameForFolder.sendKeys("Dilo");
         deleted.submit.click();
-        //delete Talk folder
+        //create klasor folder and delete
+        Driver.getDriver().navigate().refresh();
+        deleted.addNewFileButton.click();
+        deleted.NewFolder.click();
+
+        BrowserUtil.sleep(3);
+        deleted.newNameForFolder.click();
+        deleted.newNameForFolder.sendKeys("klasor");
+        deleted.submit.click();
+        //delete klasor
+        BrowserUtil.sleep(3);
         deleted.fileEllipses("klasor").click();
         deleted.deleteFolder.click();
 
