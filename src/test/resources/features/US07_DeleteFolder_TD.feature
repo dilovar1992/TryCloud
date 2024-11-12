@@ -13,8 +13,8 @@ Feature: User should be able to see all deleted file, delete and restore files
 
   @US07-AC2
   Scenario: user delete permanently any deleted files
-    And user deletes "Talk" file permanently by using ellipses in the file's line
-    Then user do not see deleted "Talk" file
+    And user deletes "klasor" file permanently by using ellipses in the file's line
+    Then user do not see deleted "klasor" file
 
   @US07-AC3
   Scenario: user can restore any files and see it on All files
