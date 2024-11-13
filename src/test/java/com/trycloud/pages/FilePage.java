@@ -1,5 +1,7 @@
 package com.trycloud.pages;
 
+import com.trycloud.utility.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -38,6 +40,12 @@ public class FilePage extends BasePage {
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+    public WebElement findFile (String fileName){
+        String locator = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[text()='" +fileName+"']";
+
+        return Driver.getDriver().findElement(By.xpath(locator));
     }
 
 }
