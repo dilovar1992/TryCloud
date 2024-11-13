@@ -5,42 +5,44 @@ import com.trycloud.utility.BrowserUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class FileModule_stepDef_AE {
     FilePage filePage = new FilePage();
 
     @When("user clicks add icon")
     public void user_clicks_add_icon() {
+
         BrowserUtil.waitForElementVisibility(filePage.addNewButton);
         filePage.addNewButton.click();
     }
 
-//    @When("user select {string} from new item menu")
-//    public void user_select_from_new_item_menu(String fileType) {
-//
-//    }
+    @When("user select {string} from new item menu")
+    public void user_select_from_new_item_menu(String itemName) {
+
+        filePage.chooseMenuItem(itemName).click();
+    }
 
     @Then("user sees the {string} under the files list")
     public void user_sees_the_under_the_files_list(String fileName) {
 
-
+        Assert.assertTrue(filePage.findFile(fileName).isDisplayed());
     }
 
     @And("user select New folder from new item menu")
     public void userSelectNewFolderFromNewItemMenu() {
+
         filePage.menuItemNewFolder.click();
         BrowserUtil.sleep(2);
-
     }
 
     @And("user enters a {string} folder name")
     public void userEntersAFolderName(String folderName) {
+
         filePage.newFolderNameInput.click();
         filePage.newFolderNameInput.sendKeys(folderName);
         BrowserUtil.sleep(2);
-
     }
-
 
 
     @When("user clicks submit button")
