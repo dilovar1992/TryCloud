@@ -2,10 +2,16 @@ package com.trycloud.stepDefinitions;
 
 import com.trycloud.pages.FilePage;
 import com.trycloud.utility.BrowserUtil;
+import com.trycloud.utility.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_old.Ac;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
 
 public class FileModule_stepDef_AE {
     FilePage filePage = new FilePage();
@@ -15,6 +21,13 @@ public class FileModule_stepDef_AE {
 
         BrowserUtil.waitForElementVisibility(filePage.addNewButton);
         filePage.addNewButton.click();
+    }
+
+    @When("user select Upload file from new item menu")
+    public void user_select_upload_file_from_new_item_menu() {
+
+        Actions actions = new Actions(Driver.getDriver());
+        actions.click(filePage.chooseMenuItem("Upload file")).sendKeys("/Users/michealthonton/Downloads/brother.jpeg").sendKeys(Keys.ENTER).build().perform();
     }
 
     @When("user select {string} from new item menu")
@@ -52,16 +65,22 @@ public class FileModule_stepDef_AE {
 
     @When("user clicks ellipses on any file")
     public void user_clicks_ellipses_on_any_file() {
+        BrowserUtil.waitForElementVisibility(filePage.ellipsesFirstFile);
+        filePage.ellipsesFirstFile.click();
 
     }
 
     @When("user clicks {string} from the ellipses menu")
     public void user_clicks_from_the_ellipses_menu(String menuItem) {
-
+        filePage.selectElipsesMenuItem(menuItem).click();
     }
 
     @Then("user should not see the deleted file {string} under the files list")
     public void user_should_not_see_the_deleted_file_under_the_files_list(String fileName) {
+        List<String> fileNamesList = BrowserUtil.getTextOfElements(filePage.fileNamesList);
+
+        Assert.assertFalse(fileNamesList.contains(fileName));
+
 
     }
 
@@ -71,7 +90,8 @@ public class FileModule_stepDef_AE {
     }
 
 
-    @And("user select Upload file from new item menu")
-    public void userSelectUploadFileFromNewItemMenu() {
+    @And("user refreshes the page")
+    public void userRefreshesThePage() {
+        Driver.getDriver().navigate().refresh();
     }
 }

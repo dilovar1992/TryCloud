@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class FilePage extends BasePage {
 
     @FindBy(xpath = "//div[@id='controls']//a[@class='button new']")
@@ -24,6 +26,14 @@ public class FilePage extends BasePage {
 
     @FindBy(xpath = "//input[@id='view13-input-folder']/following-sibling::input[@type='submit']")
     public WebElement folderNameSubmit;
+
+    @FindBy(xpath = "(//span[@class='fileactions']/a[@data-action='menu'])[2]")
+    public WebElement ellipsesFirstFile ;
+
+    @FindBy(xpath = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[@class='innernametext']")
+    public List<WebElement> fileNamesList;
+
+
 
 
     public WebElement chooseMenuItem(String itemName) {
@@ -46,6 +56,39 @@ public class FilePage extends BasePage {
         String locator = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[text()='" +fileName+"']";
 
         return Driver.getDriver().findElement(By.xpath(locator));
+    }
+
+    public WebElement selectElipsesMenuItem (String itemName){
+        String locator = "";
+
+        switch (itemName){
+
+            case "Add to favorites":
+                locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Favorite']";
+                break;
+            case "Details":
+                locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Details']";
+                break;
+
+            case "Rename":
+                locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Rename']";
+
+                break;
+
+            case "Move":
+                locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='MoveCopy']";
+                break;
+
+            case "Delete file":
+                locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Delete']";
+                break;
+
+
+        }
+
+        return Driver.getDriver().findElement(By.xpath(locator));
+
+
     }
 
 }

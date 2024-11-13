@@ -6,7 +6,8 @@ Feature: User should be able to upload, edit and delete file from Files module
     Given the user already logged in
     When user navigates to "Files" module
     And user clicks add icon
-    And user select "Upload file" from new item menu
+    And user select Upload file from new item menu
+    And user refreshes the page
     Then user sees the "Filename" under the files list
 
   @US02AC2
@@ -17,6 +18,7 @@ Feature: User should be able to upload, edit and delete file from Files module
     And user select "New folder" from new item menu
     And user enters a "klasor" folder name
     And user clicks submit button
+    And user refreshes the page
     Then user sees the "klasor" under the files list
 
   @US02AC3
