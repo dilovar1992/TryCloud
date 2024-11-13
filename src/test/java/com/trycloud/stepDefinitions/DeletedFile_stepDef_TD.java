@@ -22,23 +22,6 @@ public class DeletedFile_stepDef_TD {
     Logger LOG = LogManager.getLogger();
     @When("user clicks on Deleted files under All files")
     public void user_clicks_on_deleted_files_under_all_files() {
-        //special step to create file delete talk and Dilo file
-        //delete Talk folder
-        deleted.fileEllipses("Talk").click();
-        deleted.deleteFolder.click();
-        //create Dilo
-        deleted.addNewFileButton.click();
-        deleted.NewFolder.click();
-
-        BrowserUtil.sleep(3);
-        deleted.newNameForFolder.click();
-        deleted.newNameForFolder.sendKeys("Dilo");
-        deleted.submit.click();
-
-
-        //delete Dilo
-        deleted.fileEllipses("Dilo").click();
-        deleted.deleteFolder.click();
 
 
         deleted.deletedFiles.click();
@@ -51,6 +34,43 @@ public class DeletedFile_stepDef_TD {
     public void user_clicks_deleted_to_see_files_sorted() {
 
         BrowserUtil.sleep(3);
+        deleted.allFiles.click();
+        Driver.getDriver().navigate().refresh();
+        //special step to create file delete talk and Dilo file
+        //create Dilo
+        deleted.addNewFileButton.click();
+        deleted.NewFolder.click();
+
+        BrowserUtil.sleep(3);
+        deleted.newNameForFolder.click();
+        deleted.newNameForFolder.sendKeys("Dilo");
+        deleted.submit.click();
+        //create klasor folder and delete
+        Driver.getDriver().navigate().refresh();
+        deleted.addNewFileButton.click();
+        deleted.NewFolder.click();
+
+        BrowserUtil.sleep(3);
+        deleted.newNameForFolder.click();
+        deleted.newNameForFolder.sendKeys("klasor");
+        deleted.submit.click();
+        //delete klasor
+        BrowserUtil.sleep(3);
+        deleted.fileEllipses("klasor").click();
+        deleted.deleteFolder.click();
+
+
+
+        //delete Dilo
+        BrowserUtil.waitForElementClickAbility(deleted.fileEllipses("Dilo"));
+        deleted.fileEllipses("Dilo").click();
+        BrowserUtil.sleep(2);
+        deleted.deleteFolder.click();
+        //back to delete folder
+        deleted.deletedFiles.click();
+
+        //this is main method of this snippet
+        BrowserUtil.sleep(5);
         List<Integer> actualDates=new ArrayList<>();
         for (WebElement dates : deleted.dates) {
             String date=dates.getText();
