@@ -3,18 +3,41 @@ package com.trycloud.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class FilePage extends BasePage{
+public class FilePage extends BasePage {
 
     @FindBy(xpath = "//div[@id='controls']//a[@class='button new']")
     public WebElement addNewButton;
 
-    @FindBy(xpath = "//a[@data-templatename='New folder']")
+    @FindBy(xpath = "(//div[@id='uploadprogresswrapper']/following-sibling::div//li)[1]")
+    public WebElement menuItemFileUpload;
+
+    @FindBy(xpath = "(//div[@id='uploadprogresswrapper']/following-sibling::div//li)[2]")
     public WebElement menuItemNewFolder;
+
+    @FindBy(xpath = "(//div[@id='uploadprogresswrapper']/following-sibling::div//li)[3]")
+    public WebElement menuItemNewTextDoc;
 
     @FindBy(xpath = "//input[@id='view13-input-folder']")
     public WebElement newFolderNameInput;
 
-    @FindBy(xpath = "//input[@id='view13-input-folder']/following-sibling::input[@type='submit']")    public WebElement folderNameSubmit;
+    @FindBy(xpath = "//input[@id='view13-input-folder']/following-sibling::input[@type='submit']")
+    public WebElement folderNameSubmit;
 
+
+    public WebElement chooseMenuItem(String itemName) {
+        switch (itemName) {
+            case "Upload file":
+                return menuItemFileUpload;
+
+            case "New folder":
+                return menuItemNewFolder;
+
+            case "New text document":
+                return menuItemNewTextDoc;
+
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 
 }
