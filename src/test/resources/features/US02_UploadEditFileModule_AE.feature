@@ -8,7 +8,7 @@ Feature: User should be able to upload, edit and delete file from Files module
     And user clicks add icon
     And user select Upload file from new item menu
     And user refreshes the page
-    Then user sees the "Filename" under the files list
+    Then user sees the uploaded file under the files list
 
   @US02AC2
   Scenario: User should be able create folder

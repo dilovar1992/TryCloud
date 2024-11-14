@@ -8,9 +8,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en_old.Ac;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
+import javax.tools.Tool;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class FileModule_stepDef_AE {
@@ -24,10 +29,57 @@ public class FileModule_stepDef_AE {
     }
 
     @When("user select Upload file from new item menu")
-    public void user_select_upload_file_from_new_item_menu() {
+    public void user_select_upload_file_from_new_item_menu() throws AWTException {
 
-        Actions actions = new Actions(Driver.getDriver());
-        actions.click(filePage.chooseMenuItem("Upload file")).sendKeys("/Users/michealthonton/Downloads/brother.jpeg").sendKeys(Keys.ENTER).build().perform();
+//        Actions actions = new Actions(Driver.getDriver());
+//        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+//        js.executeScript("arguments[0].click();", filePage.chooseMenuItem("Upload file"));
+
+        filePage.chooseMenuItem("Upload file").click(); //click with JavaScriptExecutor if this don't work,
+
+
+        //after OS window opens
+        String filePath = "/Users/michealthonton/Downloads/brother.jpeg";
+
+        //actions done with Robot
+        //1- copy file path into the clipboard (ctrl + C or cmd + C)
+
+        //stores the file path
+        StringSelection filePathSelection = new StringSelection(filePath);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePathSelection,null);
+
+        //2- paste from clipboard with ctrl + v or cmd + v
+        BrowserUtil.sleep(3);
+        Robot robot = new Robot(); //declare awt exception
+
+//        robot.keyPress(KeyEvent.VK_META);
+//
+//        robot.keyPress(KeyEvent.VK_TAB);
+//
+//        robot.keyRelease(KeyEvent.VK_META);
+//
+//        robot.keyRelease(KeyEvent.VK_TAB);
+//
+//        robot.delay(500);
+
+
+        //to achieve control+V action, press CTRL, then press V, then release V, and release CTRL
+        //robot.keyPress(KeyEvent.VK_CONTROL); //for windows
+        robot.keyPress(KeyEvent.VK_META); //for Mac OS
+        robot.keyPress(KeyEvent.VK_V);
+        BrowserUtil.sleep(3);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_META);
+
+        BrowserUtil.sleep(3);
+        //3 press enter key/return
+        //pressed key should be released as well
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        BrowserUtil.sleep(3);
+
+        System.out.println("waiting");
+        BrowserUtil.sleep(3);
     }
 
     @When("user select {string} from new item menu")
@@ -93,5 +145,9 @@ public class FileModule_stepDef_AE {
     @And("user refreshes the page")
     public void userRefreshesThePage() {
         Driver.getDriver().navigate().refresh();
+    }
+
+    @Then("user sees the uploaded file under the files list")
+    public void userSeesTheUploadedFileUnderTheFilesList() {
     }
 }
