@@ -33,42 +33,6 @@ public class DeletedFile_stepDef_TD {
     @Then("user clicks Deleted to see files sorted")
     public void user_clicks_deleted_to_see_files_sorted() {
 
-        BrowserUtil.sleep(3);
-        deleted.allFiles.click();
-        Driver.getDriver().navigate().refresh();
-        //special step to create file delete talk and Dilo file
-        //create Dilo
-        deleted.addNewFileButton.click();
-        deleted.NewFolder.click();
-
-        BrowserUtil.sleep(3);
-        deleted.newNameForFolder.click();
-        deleted.newNameForFolder.sendKeys("Dilo");
-        deleted.submit.click();
-        //create klasor folder and delete
-        Driver.getDriver().navigate().refresh();
-        deleted.addNewFileButton.click();
-        deleted.NewFolder.click();
-
-        BrowserUtil.sleep(3);
-        deleted.newNameForFolder.click();
-        deleted.newNameForFolder.sendKeys("klasor");
-        deleted.submit.click();
-        //delete klasor
-        BrowserUtil.sleep(3);
-        deleted.fileEllipses("klasor").click();
-        deleted.deleteFolder.click();
-
-
-
-        //delete Dilo
-        BrowserUtil.waitForElementClickAbility(deleted.fileEllipses("Dilo"));
-        deleted.fileEllipses("Dilo").click();
-        BrowserUtil.sleep(2);
-        deleted.deleteFolder.click();
-        //back to delete folder
-        deleted.deletedFiles.click();
-
         //this is main method of this snippet
         BrowserUtil.sleep(5);
         List<Integer> actualDates=new ArrayList<>();
@@ -83,6 +47,7 @@ public class DeletedFile_stepDef_TD {
         LOG.info("actual dates after sorting"+actualDates);
         //click to sort
         BrowserUtil.waitForElementClickAbility(deleted.deletedSort);
+        BrowserUtil.sleep(3);
         action.doubleClick(deleted.deletedSort).perform();
 
         List<Integer> expectedDates=new ArrayList<>();
@@ -144,7 +109,28 @@ public class DeletedFile_stepDef_TD {
         BrowserUtil.waitForElementVisibility(deleted.fileName(name));
         Assert.assertTrue(deleted.fileName(name).isDisplayed());
 
+        LOG.info("Delete the file Dilo to maintain the flow");
+        deleted.deleteCreatedFiles(name);
+
     }
 
 
+    @And("user creates {string} and {string} files")
+    public void userCreatesAndFiles(String Dilo, String Turaev) {
+
+        deleted.createNewFolder(Dilo);
+        Driver.getDriver().navigate().refresh();
+        deleted.createNewFolder(Turaev);
+
+    }
+
+    @And("user deletes {string} and {string} files")
+    public void userDeletesAndFiles(String Dilo, String Turaev) {
+
+        deleted.deleteCreatedFiles(Dilo);
+        Driver.getDriver().navigate().refresh();
+        deleted.deleteCreatedFiles(Turaev);
+
+
+    }
 }

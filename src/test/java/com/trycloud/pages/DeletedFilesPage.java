@@ -46,13 +46,13 @@ public class DeletedFilesPage extends BasePage{
         return element;
     }
     @FindBy(xpath = "//div[@id='controls']//a[@class='button new']")
-    public WebElement addNewFileButton;
+    public  WebElement addNewFileButton;
     @FindBy(xpath = "//li/a[@data-templatename='New folder']")
-    public WebElement NewFolder;
+    public  WebElement NewFolder;
     @FindBy(xpath="//a[@class='menuitem active']//input[@id='view13-input-folder']")
-    public WebElement newNameForFolder;
+    public  WebElement newNameForFolder;
     @FindBy(xpath = "//a[@class='menuitem active']//input[@type='submit']")
-    public WebElement submit;
+    public  WebElement submit;
 
 
 
@@ -67,15 +67,57 @@ public class DeletedFilesPage extends BasePage{
     }
     //method returns dates in hours in order to sort dates
     public int convertToHours(String date){
+        String empty="";
         if(date.contains("seconds")){
-            return Integer.parseInt(date.replace("seconds ago","1").trim())/3600;
+            //assign modified date
+            empty=date.replace("seconds ago","").trim();
+            //if empty is empty
+            if (empty.isEmpty()){
+                return 0;
+            }else {
+                //if not then
+                return Integer.parseInt(empty)/3600;
+            }
+
         }else if (date.contains("days")){
             return Integer.parseInt(date.replace("days ago","").trim())*24;
         } else if(date.contains("hours")){
             return Integer.parseInt(date.replace("hours ago","").trim());
+        } else if (date.contains("in a few")) {
+            empty=date.replace("in a few seconds","").trim();
+            if (empty.isEmpty()){
+                return 0;
+            }else {
+                return Integer.parseInt(empty)/3600;
+            }
+        }else if (date.contains("minutes")) {
+            empty=date.replace("minutes ago","").trim();
+            if (empty.isEmpty()){
+                return 0;
+            }else {
+            return Integer.parseInt(empty)/60;
+            }
         }
         return 0;
     }
+    //method creates new folder on myFiles
+    public void createNewFolder(String folderName){
+        addNewFileButton.click();
+        NewFolder.click();
+
+        BrowserUtil.sleep(3);
+        newNameForFolder.click();
+        newNameForFolder.sendKeys(folderName);
+        submit.click();
+    }
+    //method to delete the created files on my files
+    public void deleteCreatedFiles(String folderName){
+        BrowserUtil.waitForElementClickAbility(fileEllipses(folderName));
+        fileEllipses(folderName).click();
+        BrowserUtil.sleep(2);
+        deleteFolder.click();
+    }
+
 
 
 
