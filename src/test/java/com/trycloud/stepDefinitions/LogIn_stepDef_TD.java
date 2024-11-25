@@ -13,9 +13,11 @@ import static org.junit.Assert.assertTrue;
 public class LogIn_stepDef_TD {
     Logger LOG = LogManager.getLogger();
     LoginPage loginPage=new LoginPage();
-    Actions action=new Actions(Driver.getDriver());
+
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
+        String URL =Driver.getDriver().getCurrentUrl();
+        assertTrue(URL.toLowerCase().contains("login"));
         LOG.info("user goes to login page");
     }
     @When("the user enters valid {string} and {string}")
@@ -48,9 +50,9 @@ public class LogIn_stepDef_TD {
         loginPage.passwordBox.sendKeys(wrongPass);
     }
     @Then("an error message {string} should be displayed")
-    public void an_error_message_should_be_displayed(String warning) {
-       String error=loginPage.warningMessage(warning);
-        assertEquals(error,warning);
+    public void an_error_message_should_be_displayed(String expectedWarningMessage) {
+       String actualWarningMessage=loginPage.warningMessage(expectedWarningMessage);
+        assertEquals(actualWarningMessage,expectedWarningMessage);
     }
     //AC4
     @Given("the user enters a {string} in the password field")
