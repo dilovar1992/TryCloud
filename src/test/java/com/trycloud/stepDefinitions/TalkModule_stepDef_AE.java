@@ -1,18 +1,22 @@
 package com.trycloud.stepDefinitions;
 
+import com.trycloud.pages.TalkPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class TalkModule_stepDef_AE {
 
+    TalkPage talkPage = new TalkPage();
+
     @When("user clicks Create new conversation button")
     public void user_clicks_create_new_conversation_button() {
+        talkPage.newConversationButton.click();
 
     }
 
     @When("user enters conversation name {string}")
     public void user_enters_conversation_name(String conversationName) {
-
+        talkPage.conversationNameInputBox.sendKeys(conversationName);
     }
 
     @When("user clicks join via link checkbox")
