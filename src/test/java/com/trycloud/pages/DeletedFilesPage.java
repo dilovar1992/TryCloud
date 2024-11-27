@@ -10,14 +10,15 @@ public class DeletedFilesPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='app-navigation']//li[@data-id='trashbin']")
     public WebElement deletedFiles;
+
     @FindBy(xpath="//a[@id='modified']//span[.='Deleted']")
     public WebElement deletedSort;
 
     @FindBy(xpath = "//div[@id='app-content-trashbin']//tbody[@id='fileList']/tr//td[@class='date']/span")
     public List<WebElement> dates;
+
     @FindBy(xpath = "//div[@id='app-content-trashbin']//tbody[@id='fileList']/tr//span[@class='innernametext']")
     public List<WebElement> folderNames;
-
 
     public WebElement ellipses(String name){
         WebElement element= Driver.getDriver().findElement(By.xpath("//span[@data-original-title='"+name+"']/following-sibling::span[@class='fileactions']//span[@class='icon icon-more']"));
@@ -27,7 +28,6 @@ public class DeletedFilesPage extends BasePage{
     @FindBy(xpath="//a[@data-action='Delete']/span[normalize-space()='Delete permanently']")
     public WebElement deletePermanently;
 
-
     public WebElement restore(String restoredFile){
         WebElement element= Driver.getDriver().findElement(By.xpath("//span[@data-original-title='"+restoredFile+"']/following-sibling::span[@class='fileactions']//span[@class='icon icon-history']"));
         return element;
@@ -36,27 +36,27 @@ public class DeletedFilesPage extends BasePage{
     @FindBy(xpath = "//a[normalize-space()='All files']")
     public WebElement allFiles;
 
-
     public WebElement fileName(String fileName){
         WebElement element= Driver.getDriver().findElement(By.xpath("//a[@href='/index.php/apps/files?dir=//"+fileName+"']//span[@class='innernametext']"));
         return element;
     }
+
     public WebElement fileEllipses(String fileName){
         WebElement element= Driver.getDriver().findElement(By.xpath("//table[@id='filestable']/tbody//a[@href='/index.php/apps/files?dir=//"+fileName+"']//span[@class='icon icon-more']"));
         return element;
     }
+
     @FindBy(xpath = "//div[@id='controls']//a[@class='button new']")
     public  WebElement addNewFileButton;
+
     @FindBy(xpath = "//li/a[@data-templatename='New folder']")
     public  WebElement NewFolder;
+
     @FindBy(xpath="//a[@class='menuitem active']//input[@id='view13-input-folder']")
     public  WebElement newNameForFolder;
+
     @FindBy(xpath = "//a[@class='menuitem active']//input[@type='submit']")
     public  WebElement submit;
-
-
-
-
 
     @FindBy(xpath = "//ul/li[@class=' action-delete-container']/a")
     public WebElement deleteFolder;
@@ -65,6 +65,7 @@ public class DeletedFilesPage extends BasePage{
         WebElement element= Driver.getDriver().findElement(By.xpath("//td[@class='filename']//span[@data-original-title='"+FileName+"']"));
         return element;
     }
+
     //method returns dates in hours in order to sort dates
     public int convertToHours(String date){
         String empty="";
@@ -100,6 +101,7 @@ public class DeletedFilesPage extends BasePage{
         }
         return 0;
     }
+
     //method creates new folder on myFiles
     public void createNewFolder(String folderName){
         addNewFileButton.click();
@@ -110,6 +112,7 @@ public class DeletedFilesPage extends BasePage{
         newNameForFolder.sendKeys(folderName);
         submit.click();
     }
+
     //method to delete the created files on my files
     public void deleteCreatedFiles(String folderName){
         BrowserUtil.waitForElementClickAbility(fileEllipses(folderName));
@@ -117,12 +120,4 @@ public class DeletedFilesPage extends BasePage{
         BrowserUtil.sleep(2);
         deleteFolder.click();
     }
-
-
-
-
-
-
-
-
 }

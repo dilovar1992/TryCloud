@@ -33,9 +33,6 @@ public class FilePage extends BasePage {
     @FindBy(xpath = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[@class='innernametext']")
     public List<WebElement> fileNamesList;
 
-
-
-
     public WebElement chooseMenuItem(String itemName) {
         switch (itemName) {
             case "Upload file":
@@ -60,7 +57,6 @@ public class FilePage extends BasePage {
 
     public WebElement selectElipsesMenuItem (String itemName){
         String locator = "";
-
         switch (itemName){
 
             case "Add to favorites":
@@ -72,7 +68,6 @@ public class FilePage extends BasePage {
 
             case "Rename":
                 locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Rename']";
-
                 break;
 
             case "Move":
@@ -82,13 +77,7 @@ public class FilePage extends BasePage {
             case "Delete file":
                 locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Delete']";
                 break;
-
-
         }
-
         return Driver.getDriver().findElement(By.xpath(locator));
-
-
     }
-
 }

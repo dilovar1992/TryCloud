@@ -13,6 +13,7 @@ public class LogOut_stepDef_AE {
 
     @Then("user lands on the login page")
     public void user_lands_on_the_login_page() {
+
         //login page has login button
         LoginPage loginPage = new LoginPage();
         Assert.assertTrue(loginPage.logInButton.isDisplayed());
@@ -25,5 +26,4 @@ public class LogOut_stepDef_AE {
         Driver.getDriver().navigate().back();
         LOG.info("User has navigated back");
     }
-
 }

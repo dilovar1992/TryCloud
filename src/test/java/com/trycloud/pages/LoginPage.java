@@ -25,17 +25,13 @@ public class LoginPage extends BasePage{
             return wrongEmailAndPass.getText();
         } else if (str.startsWith("Please")) {
            return passwordBox.getAttribute("validationMessage");
-
         }
         return "";
     }
-
 
     public void login(String username,String password){
         usernameBox.sendKeys(username);
         passwordBox.sendKeys(password);
         logInButton.click();
     }
-
-
 }
