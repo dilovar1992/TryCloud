@@ -22,11 +22,11 @@ public class TalkModule_stepDef_AE {
     public void user_clicks_create_new_conversation_button() {
 
         talkPage.newConversationButton.click();
-
     }
 
     @When("user enters conversation name {string}")
     public void user_enters_conversation_name(String conversationName) {
+
         BrowserUtil.waitForElementVisibility(talkPage.conversationNameInputBox);
         talkPage.conversationNameInputBox.sendKeys(conversationName);
         LOG.info("New conversation name {} has been entered", conversationName);
@@ -34,6 +34,7 @@ public class TalkModule_stepDef_AE {
 
     @When("user clicks join via link checkbox")
     public void user_clicks_join_via_link_checkbox() {
+
         BrowserUtil.waitForElementVisibility(talkPage.allowGuestsToJoinWithLinkCheckbox);
         talkPage.allowGuestsToJoinWithLinkCheckbox.click();
     }
@@ -62,15 +63,16 @@ public class TalkModule_stepDef_AE {
 
     @When("user clicks Create conversation button")
     public void user_clicks_create_conversation_button() {
+
         talkPage.createConversationButton.click();
     }
 
     @Then("user should see {string} conversation under the list")
     public void user_should_see_conversation_under_the_list(String conversationName) {
+
         BrowserUtil.waitForElementVisibility(talkPage.conversation);
         LOG.info("{}--> New conversation name", talkPage.getConversationName());
         Assert.assertTrue(talkPage.getConversationName().contains(conversationName));
-
     }
 
     @When("user opens the ellipses menu")

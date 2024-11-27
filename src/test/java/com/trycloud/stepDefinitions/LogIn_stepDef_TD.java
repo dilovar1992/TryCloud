@@ -3,9 +3,8 @@ package com.trycloud.stepDefinitions;
 import com.trycloud.pages.*;
 import com.trycloud.utility.*;
 import io.cucumber.java.en.*;
-import org.apache.logging.log4j.*;
-import org.junit.*;
-import org.openqa.selenium.interactions.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

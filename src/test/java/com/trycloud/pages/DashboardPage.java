@@ -3,18 +3,16 @@ package com.trycloud.pages;
 import com.trycloud.utility.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
-
 import java.security.InvalidParameterException;
 import java.text.MessageFormat;
-import java.util.*;
 
 public class DashboardPage extends BasePage {
     //corner user part
     @FindBy(id = "settings")
     public WebElement userCircle;//profile menu button
+
     @FindBy(className = "user-status-menu-item__toggle")
     public WebElement StatusOptions;
-
 
     @FindBy(css = "div.user-status-menu-item>span")
     public WebElement userName;
@@ -35,18 +33,16 @@ public class DashboardPage extends BasePage {
     @FindBy(className = "icon-user-status")
     public WebElement RecentStatus;
 
-
     //other elements
-    @FindBy(xpath = "(//button)[3]")
+    @FindBy(xpath = "(//button)[3]") //TODO remove if not used
     public WebElement closeButton;
+
     @FindBy(xpath = "//a[.='Customize']")
     public WebElement customizeButton;
-
 
     //return webelement of modules
     public WebElement modules(String module) {
         return Driver.getDriver().findElement(By.xpath("//ul[@id='appmenu']/li/a[@aria-label='" + module + "']"));
-
     }
 
     //status type
@@ -81,7 +77,6 @@ public class DashboardPage extends BasePage {
                 break;
             default:
                 System.out.println("Locators does not work");
-
         }
     }
 
@@ -110,10 +105,8 @@ public class DashboardPage extends BasePage {
                 default:
                     throw new InvalidParameterException(MessageFormat.format("Invalid Menu ITEM {0}", itemName));
             }
-
             locator = "(//nav[@id='expanddiv']//li)[" + index + "]";
         }
-
         return Driver.getDriver().findElement(By.xpath(locator));
     }
 }
