@@ -12,7 +12,7 @@ public class TalkPage extends BasePage{
     @FindBy(xpath = "(//input[@type='text'])[2]")
     public WebElement conversationNameInputBox;
 
-    @FindBy(xpath = "//input[@id='checkbox']")
+    @FindBy(xpath = "//label[@for='checkbox']")
     public WebElement allowGuestsToJoinWithLinkCheckbox;
 
     @FindBy(xpath = "//div[@class='modal-container']//button")
