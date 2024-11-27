@@ -1,5 +1,7 @@
 package com.trycloud.pages;
 
+import com.trycloud.utility.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -26,6 +28,15 @@ public class TalkPage extends BasePage{
 
     @FindBy(css = "button[class='navigation__button navigation__button-right primary']")
     public WebElement closeButton;
+
+    @FindBy(xpath = "(//ul[@class='conversations']//a)[1]") //new conversation is always the 1st item
+    public WebElement conversation;
+
+
+    public String getConversationName(){
+       String conversationName = conversation.getAttribute("aria-label");
+       return conversationName;
+    }
 
 
 
