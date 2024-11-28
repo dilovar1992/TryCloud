@@ -2,14 +2,18 @@ package com.trycloud.stepDefinitions;
 
 import com.trycloud.pages.TalkPage;
 import com.trycloud.utility.BrowserUtil;
+import com.trycloud.utility.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_old.Ac;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -57,8 +61,10 @@ public class TalkModule_stepDef_AE {
         //TODO implement random users and random number of users to be selected from list
 
         //click on the user at the random index
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(userList.get(index)).click().build().perform();
 
-        userList.get(index).click();
+        //userList.get(index).click();
     }
 
     @When("user clicks Create conversation button")
@@ -70,28 +76,40 @@ public class TalkModule_stepDef_AE {
     @Then("user should see {string} conversation under the list")
     public void user_should_see_conversation_under_the_list(String conversationName) {
 
-        BrowserUtil.waitForElementVisibility(talkPage.conversation);
-        LOG.info("{}--> New conversation name", talkPage.getConversationName());
-        Assert.assertTrue(talkPage.getConversationName().contains(conversationName));
+        BrowserUtil.waitForElementVisibility(talkPage.latestConversation);
+        LOG.info("{}--> New conversation name", talkPage.getConversationName(talkPage.latestConversation));
+        Assert.assertTrue(talkPage.getConversationName(talkPage.latestConversation).contains(conversationName));
     }
 
-    @When("user opens the ellipses menu")
-    public void user_opens_the_ellipses_menu() {
-
+    @When("user opens the ellipses menu from the {string} conversation")
+    public void user_opens_the_ellipses_menu_from_the_conversation(String conversationName) {
+        talkPage.getNewConversationEllipses(conversationName).click();
     }
 
     @When("user clicks {string} from the menu")
     public void user_clicks_from_the_menu(String menuItem) {
 
+        talkPage.getMenuItem(menuItem).click();
     }
 
     @When("user chooses {string} from the popup alert")
-    public void user_chooses_from_the_popup_alert(String choice) {
+    public void user_chooses_from_the_popup_alert(String choice) {//TODO implement choice method
+        talkPage.alertYesButton.click();
 
     }
 
-    @Then("user should not see the conversation under the list")
-    public void user_should_not_see_the_conversation_under_the_list() {
+    @Then("user should not see {string} conversation under the list")
+    public void user_should_not_see_the_conversation_under_the_list(String conversationName) {
+        List<WebElement> allConversation = talkPage.allConversation;
+        List<String > conversationTitles = new ArrayList<>();
+        for (WebElement each : allConversation) {
+            conversationTitles.add(talkPage.getConversationName(each));
+        }
+
+        LOG.info(conversationTitles);
+        conversationName = "Conversation, " + conversationName;
+        Assert.assertFalse(conversationTitles.contains(conversationName));
+
 
     }
 

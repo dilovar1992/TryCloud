@@ -20,8 +20,9 @@ Feature: As a user, I should be able to create a new conversation, add participa
   Scenario:User can delete a conversation
     Given the user already logged in
     When user navigates to "Talk" module
-    And user opens the ellipses menu
-    And user clicks "Delete Conversation" from the menu
+    And user opens the ellipses menu from the "Merhaba genclik" conversation
+    And user clicks "Delete conversation" from the menu
     And user chooses "Yes" from the popup alert
-    Then user should not see the conversation under the list
+    And user refreshes the page
+    Then user should not see "Merhaba genclik" conversation under the list
 
