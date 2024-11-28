@@ -23,5 +23,6 @@ Feature: As a user, I should be able to create a new conversation, add participa
     And user opens the ellipses menu from the "Merhaba genclik" conversation
     And user clicks "Delete conversation" from the menu
     And user chooses "Yes" from the popup alert
+    And user refreshes the page
     Then user should not see "Merhaba genclik" conversation under the list
 

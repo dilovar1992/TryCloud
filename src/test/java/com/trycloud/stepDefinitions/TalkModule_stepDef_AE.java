@@ -88,7 +88,7 @@ public class TalkModule_stepDef_AE {
 
     @When("user clicks {string} from the menu")
     public void user_clicks_from_the_menu(String menuItem) {
-        BrowserUtil.waitForElementVisibility(talkPage.getMenuItem(menuItem));
+
         talkPage.getMenuItem(menuItem).click();
     }
 

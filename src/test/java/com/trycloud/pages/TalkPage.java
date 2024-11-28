@@ -77,8 +77,7 @@ public class TalkPage extends BasePage {
                 break;
         }
 
-        //TODO fix element, giving no such element exception
-        WebElement item = Driver.getDriver().findElement(By.xpath("(//ul[@id='menu-cckbf']//span[2])[i]"));
+        WebElement item = Driver.getDriver().findElement(By.xpath("(//ul//span[@class='action-button__text'])["+i+"]"));
         return item;
     }
 }
