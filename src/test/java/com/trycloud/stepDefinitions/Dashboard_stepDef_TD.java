@@ -18,14 +18,15 @@ public class Dashboard_stepDef_TD {
       String password= ConfigurationReader.getProperty("password");
       loginPage.login(username,password);
     }
+
     @Then("user should be able to see following modules")
-    public void zÅuser_should_be_able_to_see_following_modules(List<String> expectedModules)  {//zÅuser_should_be_able_to_see_following_modules, NOT sure what the method name suppose to be, is it intentional
+    public void user_should_be_able_to_see_following_modules(List<String> expectedModules){
+
         for (String expectedModule : expectedModules) {
             //each module name is used in locators to return Webelement
             //then assert isDisplayed or not
             assertTrue(dash.modules(expectedModule).isDisplayed());
         }
-        //I could not extract text, why?
     }
 
     @And("user should be able to see {string}")

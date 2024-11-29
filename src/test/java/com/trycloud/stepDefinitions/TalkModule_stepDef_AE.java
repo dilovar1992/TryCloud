@@ -83,6 +83,7 @@ public class TalkModule_stepDef_AE {
 
     @When("user opens the ellipses menu from the {string} conversation")
     public void user_opens_the_ellipses_menu_from_the_conversation(String conversationName) {
+
         talkPage.getNewConversationEllipses(conversationName).click();
     }
 
@@ -93,13 +94,14 @@ public class TalkModule_stepDef_AE {
     }
 
     @When("user chooses {string} from the popup alert")
-    public void user_chooses_from_the_popup_alert(String choice) {//TODO implement choice method
-        talkPage.alertYesButton.click();
+    public void user_chooses_from_the_popup_alert(String choice) {
 
+        talkPage.getAlertButton(choice).click();
     }
 
     @Then("user should not see {string} conversation under the list")
     public void user_should_not_see_the_conversation_under_the_list(String conversationName) {
+
         List<WebElement> allConversation = talkPage.allConversation;
         List<String > conversationTitles = new ArrayList<>();
         for (WebElement each : allConversation) {
@@ -109,8 +111,6 @@ public class TalkModule_stepDef_AE {
         LOG.info(conversationTitles);
         conversationName = "Conversation, " + conversationName;
         Assert.assertFalse(conversationTitles.contains(conversationName));
-
-
     }
 
     @And("user clicks on close button")
