@@ -34,9 +34,6 @@ public class DashboardPage extends BasePage {
     public WebElement RecentStatus;
 
     //other elements
-    @FindBy(xpath = "(//button)[3]") //TODO remove if not used
-    public WebElement closeButton;
-
     @FindBy(xpath = "//a[.='Customize']")
     public WebElement customizeButton;
 

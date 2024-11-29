@@ -42,13 +42,9 @@ public class FileModule_stepDef_AE {
         Robot robot = new Robot(); //declare awt exception
 
 //        robot.keyPress(KeyEvent.VK_META);
-//
 //        robot.keyPress(KeyEvent.VK_TAB);
-//
 //        robot.keyRelease(KeyEvent.VK_META);
-//
 //        robot.keyRelease(KeyEvent.VK_TAB);
-//
 //        robot.delay(500);
 
         //to achieve control+V action, press CTRL, then press V, then release V, and release CTRL

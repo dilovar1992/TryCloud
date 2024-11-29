@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class TalkPage extends BasePage {
+
     @FindBy(xpath = "//button[@slot='trigger']")
     public WebElement newConversationButton;
 
@@ -80,6 +81,7 @@ public class TalkPage extends BasePage {
     }
 
     public WebElement getAlertButton(String choice){
+
         if(choice.equals("Yes")){
             return Driver.getDriver().findElement(By.xpath("//div[@class='oc-dialog']//button[2]"));
         } else if(choice.equals("No")){
