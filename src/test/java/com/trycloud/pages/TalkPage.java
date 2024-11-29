@@ -35,13 +35,11 @@ public class TalkPage extends BasePage {
     @FindBy(xpath = "//ul[@class='conversations']//a") //new conversation is always the 1st item
     public List<WebElement> allConversation;
 
-    @FindBy(xpath = "//div[@class='oc-dialog']//button[2]")
-    public WebElement alertYesButton;
-
     /**
      * @return aria-label attribute value, which contains the conversation name in format "Conversation, conversationName"
      */
     public String getConversationName(WebElement element) {
+
         return element.getAttribute("aria-label");
     }
 
@@ -79,5 +77,15 @@ public class TalkPage extends BasePage {
 
         WebElement item = Driver.getDriver().findElement(By.xpath("(//ul//span[@class='action-button__text'])["+i+"]"));
         return item;
+    }
+
+    public WebElement getAlertButton(String choice){
+        if(choice.equals("Yes")){
+            return Driver.getDriver().findElement(By.xpath("//div[@class='oc-dialog']//button[2]"));
+        } else if(choice.equals("No")){
+            return Driver.getDriver().findElement(By.xpath("//div[@class='oc-dialog']//button[1]"));
+        }else {
+            throw new RuntimeException();
+        }
     }
 }

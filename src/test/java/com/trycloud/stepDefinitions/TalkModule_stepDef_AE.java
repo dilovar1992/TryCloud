@@ -94,8 +94,7 @@ public class TalkModule_stepDef_AE {
 
     @When("user chooses {string} from the popup alert")
     public void user_chooses_from_the_popup_alert(String choice) {//TODO implement choice method
-        talkPage.alertYesButton.click();
-
+        talkPage.getAlertButton(choice).click();
     }
 
     @Then("user should not see {string} conversation under the list")
