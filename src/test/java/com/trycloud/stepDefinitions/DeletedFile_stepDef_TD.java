@@ -23,6 +23,7 @@ public class DeletedFile_stepDef_TD {
         deleted.deletedFiles.click();
         LOG.info("navigate the deleted files");
     }
+
     //ac1
     @Then("user clicks Deleted to see files sorted")
     public void user_clicks_deleted_to_see_files_sorted() {

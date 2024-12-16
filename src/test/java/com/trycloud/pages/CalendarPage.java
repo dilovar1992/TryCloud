@@ -43,9 +43,6 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "(//div[@class='property-title-time-picker']//input[@name='date'])[1]")
     public WebElement fromDateSelection;
 
-    @FindBy(xpath = "(//div[@class='property-title-time-picker']//input[@name='date'])[2]")
-    public WebElement toDateSelection;
-
     @FindBy(xpath = "(//span[@class='mx-calendar-header-label']/button)[2]")
     public WebElement yearSelectionButton;
 

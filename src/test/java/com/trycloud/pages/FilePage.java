@@ -45,7 +45,7 @@ public class FilePage extends BasePage {
                 return menuItemNewTextDoc;
 
             default:
-                throw new IllegalArgumentException();
+                throw new NullPointerException();
         }
     }
 

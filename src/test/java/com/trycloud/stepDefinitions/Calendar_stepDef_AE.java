@@ -27,16 +27,19 @@ public class Calendar_stepDef_AE {
 
     @When("user navigates to {string} module")
     public void user_navigates_to_module(String moduleName) {
+
         calendarPage.navigateToModule(moduleName);
     }
 
     @When("user clicks on calendar view button")
     public void user_clicks_on_calendar_view_button() {
+
         calendarPage.calendarView.click();
     }
 
     @When("user selects {string} view from the menu")
-    public void user_selects_view_from_the_menu(String viewType) throws InterruptedException {
+    public void user_selects_view_from_the_menu(String viewType){
+
         calendarPage.clickCalendarView(viewType);
     }
 
@@ -65,6 +68,7 @@ public class Calendar_stepDef_AE {
 
     @Then("user sees the week view of the calendar")
     public void user_sees_the_week_view_of_the_calendar() {
+
         today = LocalDate.now();
         List<WebElement> datesInWeekView = calendarPage.datesInWeekView;
 
@@ -133,7 +137,6 @@ public class Calendar_stepDef_AE {
         calendarPage.getEventHour(hour).click();
         calendarPage.getEventMinute(minute).click();
         calendarPage.getEventPeriod(periodAMorPM).click();
-
     }
 
 
