@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/trycloud/stepDefinitions",
         dryRun = false,
-        tags = "@us01",
+        tags = "",
         publish = true // generating a report with public link
         // monochrome = false
 
