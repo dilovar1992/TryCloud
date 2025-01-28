@@ -15,7 +15,7 @@ public class ContactPage extends BasePage {
     @FindBy(id="contact-fullname")
     public WebElement newContactName;
 
-    @FindBy(xpath = "//li[@id='everyone']/a")
+    @FindBy(id = "everyone")
     public WebElement allContacts;
 
 

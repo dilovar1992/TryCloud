@@ -6,7 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class ContactModule_stepDef_TD {
     String name;
     @When("user clicks New contact button")
     public void user_clicks_new_contact_button() {
-        BrowserUtil.sleep(5);
+        BrowserUtil.waitForElementClickAbility(contactPage.newContactButton);
         contactPage.newContactButton.click();
 
     }
@@ -33,15 +33,17 @@ public class ContactModule_stepDef_TD {
             contactsText.add(webElement.getText());
         }
 
-        BrowserUtil.sleep(5);
+
         Assert.assertTrue(contactsText.contains(name));
 
 
     }
 
-    @And("user write {string} of new contact")
-    public void userWriteOfNewContact(String fullName) {
-        BrowserUtil.sleep(5);
+
+
+    @And("user enters {string} as the name of the new contact")
+    public void userEntersAsTheNameOfTheNewContact(String fullName) {
+        BrowserUtil.waitForElementClickAbility(contactPage.newContactName);
         name = fullName;
         contactPage.newContactName.click();
         contactPage.newContactName.sendKeys(fullName);
