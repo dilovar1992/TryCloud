@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ContactModule_stepDef_TD {
     ContactPage contactPage=new ContactPage();
+    List<String> allContactsNames=new ArrayList<>();
     String name;
     @When("user clicks New contact button")
     public void user_clicks_new_contact_button() {
@@ -28,13 +29,13 @@ public class ContactModule_stepDef_TD {
     }
     @Then("user must see the newly created contact")
     public void user_must_see_the_newly_created_contact() {
-        List<String> contactsText=new ArrayList<>();
+
         for (WebElement webElement : contactPage.allContactsList) {
-            contactsText.add(webElement.getText());
+            allContactsNames.add(webElement.getText());
         }
 
 
-        Assert.assertTrue(contactsText.contains(name));
+        Assert.assertTrue(allContactsNames.contains(name));
 
 
     }
@@ -47,5 +48,22 @@ public class ContactModule_stepDef_TD {
         name = fullName;
         contactPage.newContactName.click();
         contactPage.newContactName.sendKeys(fullName);
+    }
+
+    //US03-2
+    @Then("user sees contact names below")
+    public void user_sees_contact_names_below(List<String> expectedNames) {
+        // need an idea to solve the issue
+        for (WebElement webElement : contactPage.allContactsList) {
+            allContactsNames.add(webElement.getText());
+        }
+        Assert.assertEquals(expectedNames, allContactsNames);
+
+    }
+
+
+    @Then("user sees {int} total number of contacts near the All Contacts tab")
+    public void userSeesTotalNumberOfContactsNearTheAllContactsTab(int expectedCount) {
+        Assert.assertEquals(expectedCount, allContactsNames.size());
     }
 }

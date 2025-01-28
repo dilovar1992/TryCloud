@@ -22,4 +22,7 @@ public class ContactPage extends BasePage {
 
     @FindBy (xpath = "//div[@class='app-content-list-item-line-one']")
     public List<WebElement> allContactsList;
+
+    @FindBy(xpath = "//div[@class='app-navigation-entry__utils']/div")
+    public WebElement allContactsCount;
 }
