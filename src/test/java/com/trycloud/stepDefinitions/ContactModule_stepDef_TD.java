@@ -53,10 +53,8 @@ public class ContactModule_stepDef_TD {
     //US03-2
     @Then("user sees contact names below")
     public void user_sees_contact_names_below(List<String> expectedNames) {
-        // need an idea to solve the issue
-        for (WebElement webElement : contactPage.allContactsList) {
-            allContactsNames.add(webElement.getText());
-        }
+
+        allContactsNames=BrowserUtil.getTextOfElements(contactPage.allContactsList);
         Assert.assertEquals(expectedNames, allContactsNames);
 
     }
@@ -64,6 +62,8 @@ public class ContactModule_stepDef_TD {
 
     @Then("user sees {int} total number of contacts near the All Contacts tab")
     public void userSeesTotalNumberOfContactsNearTheAllContactsTab(int expectedCount) {
-        Assert.assertEquals(expectedCount, allContactsNames.size());
+
+        String actualCount = contactPage.allContactsCount.getText();
+        Assert.assertEquals(expectedCount+"",actualCount );
     }
 }
