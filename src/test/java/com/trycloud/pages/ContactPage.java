@@ -15,11 +15,14 @@ public class ContactPage extends BasePage {
     @FindBy(id="contact-fullname")
     public WebElement newContactName;
 
-    @FindBy(xpath = "//li[@id='everyone']/a")
+    @FindBy(id = "everyone")
     public WebElement allContacts;
 
 
 
     @FindBy (xpath = "//div[@class='app-content-list-item-line-one']")
     public List<WebElement> allContactsList;
+
+    @FindBy(xpath = "//div[@class='app-navigation-entry__utils']/div")
+    public WebElement allContactsCount;
 }
