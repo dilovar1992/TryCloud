@@ -66,4 +66,32 @@ public class ContactModule_stepDef_TD {
         String actualCount = contactPage.allContactsCount.getText();
         Assert.assertEquals(expectedCount+"",actualCount );
     }
+
+    //US03-4
+    @When("user chooses any contact from all contacts")
+    public void user_chooses_any_contact_from_all_contacts() {
+       contactPage.chooseContact(2).click();
+    }
+    @When("user clicks on image icon")
+    public void user_clicks_on_image_icon() {
+        contactPage.imageButton.click();
+    }
+    @When("user clicks on {string}")
+    public void user_clicks_on(String string) {
+        contactPage.chooseFromFiles.click();
+    }
+
+    @When("user clicks Choose button")
+    public void user_clicks_choose_button() {
+        contactPage.chooseButton.click();
+    }
+    @Then("user should see new profile image")
+    public void user_should_see_new_profile_image() {
+
+    }
+
+    @And("user chooses {string} uploaded image")
+    public void userChoosesUploadedImage(String image) {
+        contactPage.chooseAnImage(image).click();
+    }
 }
