@@ -44,8 +44,20 @@ public class ContactPage extends BasePage {
 
     @FindBy (xpath = "//button[@class='primary']")
     public WebElement chooseButton;
+    //need to extract attribute value
+    public WebElement contactsProfilePic(int b) {
+        return Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class, 'avatardiv popovermenu-wrapper app-content-list-item-icon')])["+b+"]"));
+    }
+
+    //(//button[@class='action-button focusable'])[2]  // delete button
 
 
+
+    @FindBy(xpath = "//div[@class='contact-header__actions']//button[@aria-controls='menu-phir']")
+    public WebElement ellipsesMenu;
+
+    @FindBy(xpath = "(//button[@class='action-button focusable'])[2]")
+    public WebElement deleteButton;
 
 
 }
