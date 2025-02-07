@@ -49,14 +49,14 @@ public class ContactPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class, 'avatardiv popovermenu-wrapper app-content-list-item-icon')])["+b+"]"));
     }
 
-    //(//button[@class='action-button focusable'])[2]  // delete button
 
 
 
-    @FindBy(xpath = "//div[@class='contact-header__actions']//button[@aria-controls='menu-phir']")
+
+    @FindBy(xpath = "//div[@class='contact-header__actions']//button")
     public WebElement ellipsesMenu;
 
-    @FindBy(xpath = "(//button[@class='action-button focusable'])[2]")
+    @FindBy(xpath = "(//div[starts-with(@id,'popover')]//span[.='Delete'])")
     public WebElement deleteButton;
 
 

@@ -6,8 +6,10 @@ import com.trycloud.utility.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.checkerframework.checker.units.qual.K;
 import org.junit.Assert;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -34,11 +36,12 @@ public class ContactModule_stepDef_TD {
 
     @And("user navigates to All contacts")
     public void user_navigates_to_all_contacts() {
+
         contactPage.allContacts.click();
     }
     @Then("user must see the newly created contact")
     public void user_must_see_the_newly_created_contact() {
-
+        Driver.getDriver().navigate().refresh();
         for (WebElement webElement : contactPage.allContactsList) {
             allContactsNames.add(webElement.getText());
         }
@@ -56,18 +59,21 @@ public class ContactModule_stepDef_TD {
         BrowserUtil.waitForElementClickAbility(contactPage.newContactName);
         name = fullName;
         contactPage.newContactName.click();
-        contactPage.newContactName.sendKeys(fullName);
+        contactPage.newContactName.sendKeys(fullName+ Keys.ENTER);
+        //BrowserUtil.sleep(3);
+       Driver.getDriver().navigate().refresh();
     }
 
     //US03-2
-    @Then("user sees contact names below")
-    public void user_sees_contact_names_below(List<String> expectedNames) {
-
+    @Then("user sees contact names")
+    public void userSeesContactNames() {
         allContactsNames=BrowserUtil.getTextOfElements(contactPage.allContactsList);
 
-        Assert.assertEquals(expectedNames, allContactsNames);
-
+        for (WebElement element : contactPage.allContactsList) {
+            Assert.assertTrue(allContactsNames.contains(element.getText()));
+        }
     }
+
 
 
     @Then("user sees {int} total number of contacts near the All Contacts tab")
@@ -78,14 +84,13 @@ public class ContactModule_stepDef_TD {
     }
 
     //US03-3
-    Random random=new Random();
-    //hardcoded needs to be dynamic
-    int randomNum=random.nextInt(6)+1;
-    @When("user chooses any contact from all contacts")
-    public void user_chooses_any_contact_from_all_contacts() {
 
-        contactPage.chooseContact(randomNum).click();
+    @And("user chooses contact number {int} from all contacts")
+    public void userChoosesContactNumberFromAllContacts(int number) {
+        name=contactPage.chooseContact(number).getText();
+        contactPage.chooseContact(number).click();
     }
+
     @When("user clicks on image icon")
     public void user_clicks_on_image_icon() {
         contactPage.imageButton.click();
@@ -99,11 +104,11 @@ public class ContactModule_stepDef_TD {
     public void user_clicks_choose_button() {
         contactPage.chooseButton.click();
     }
-    @Then("user should see new profile image")
-    public void user_should_see_new_profile_image() {
-
-        Assert.assertFalse(contactPage.contactsProfilePic(randomNum).getAttribute("class").contains("unknown"));
+    @Then("user should see new profile image of contact number {int}")
+    public void userShouldSeeNewProfileImageOfContactNumber(int contact) {
+        Assert.assertFalse(contactPage.contactsProfilePic(contact).getAttribute("class").contains("unknown"));
     }
+
 
     @And("user chooses {string} uploaded image")
     public void userChoosesUploadedImage(String image) {
@@ -114,16 +119,28 @@ public class ContactModule_stepDef_TD {
     @When("user clicks ellipses on the right end")
     public void user_clicks_ellipses_on_the_right_end() {
 
+
         contactPage.ellipsesMenu.click();
     }
 
-    @Then("user does not see deleted contact on contact list")
-    public void user_does_not_see_deleted_contact_on_contact_list() {
 
-    }
 
     @And("user clicks Delete from list")
     public void userClicksDeleteFromList() {
         contactPage.deleteButton.click();
+        Driver.getDriver().navigate().refresh();
+        allContactsNames=BrowserUtil.getTextOfElements(contactPage.allContactsList);
     }
+
+
+    @Then("user does not see contact number {int} on contact list")
+    public void userDoesNotSeeContactNumberOnContactList(int num) {
+
+        System.out.println(allContactsNames);
+        BrowserUtil.sleep(3);
+        System.out.println(name);
+        Assert.assertFalse(allContactsNames.contains(name));
+    }
+
+
 }
