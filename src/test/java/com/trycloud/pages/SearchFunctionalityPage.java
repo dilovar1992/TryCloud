@@ -12,7 +12,7 @@ public class SearchFunctionalityPage extends BasePage{
     @FindBy(xpath = "//input[@type='search']")
     public WebElement searchInput;
 
-    public WebElement searchResults(String filename){
+    public WebElement searchedFile(String filename){
         return Driver.getDriver().findElement(By.xpath("//a//span[@class='unified-search__result-content']//strong[.='"+filename+"']"));
     }
     public WebElement file(String file){

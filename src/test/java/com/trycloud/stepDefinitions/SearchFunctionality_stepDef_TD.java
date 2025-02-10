@@ -19,7 +19,7 @@ public class SearchFunctionality_stepDef_TD {
     }
     @And("user clicks on {string} file.")
     public void userClicksOnFile(String filename) {
-        search.searchResults(filename).click();
+        search.searchedFile(filename).click();
     }
     @Then("user sees {string} file under All Files")
     public void userSeesFileUnderAllFiles(String fileName) {
