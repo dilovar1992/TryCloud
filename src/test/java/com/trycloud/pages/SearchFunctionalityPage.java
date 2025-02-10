@@ -19,4 +19,7 @@ public class SearchFunctionalityPage extends BasePage{
         return Driver.getDriver().findElement(By.xpath("//a[@class='name']//span[.='"+file+"']"));
     }
 
+    @FindBy(id="nextcloud")
+    public WebElement Logo;
+
 }
