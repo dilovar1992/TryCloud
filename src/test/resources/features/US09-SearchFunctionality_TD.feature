@@ -1,6 +1,6 @@
-@US08
+@US09
 Feature: User should be able to search a file or a contact from a Dashboard
-  @US08-1
+  @US09-1
   Scenario: User can search file using magnifying glass icon
     Given the user already logged in
     When user navigates to "Contacts" module
@@ -8,7 +8,7 @@ Feature: User should be able to search a file or a contact from a Dashboard
     And user write "Readme" on search bar
     And user clicks on "Readme" file.
     Then user sees "Readme" file under All Files
-  @US08-2
+  @US09-2
     Scenario: user navigate to Dashboard
     Given the user already logged in
     When user navigates to "Contacts" module
