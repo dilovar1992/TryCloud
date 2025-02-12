@@ -59,5 +59,20 @@ public class ContactPage extends BasePage {
     @FindBy(xpath = "(//div[starts-with(@id,'popover')]//span[.='Delete'])")
     public WebElement deleteButton;
 
+//US08-1
+    @FindBy(xpath = "//button[normalize-space(@class)='icon action-item__menutoggle icon-add']")
+    public WebElement addButton;
+
+    @FindBy(xpath="//input[@class='action-input__input focusable']")
+    public WebElement inputGroupName;
+
+    public WebElement createdGroupName(String str){
+        return Driver.getDriver().findElement(By.xpath("//a[@class='app-navigation-entry-link']//span[@title='"+str+"']"));
+    }
+
+    //choose any contacts by name
+    public WebElement getContactName(String name){
+        return Driver.getDriver().findElement(By.xpath("//div[@class='vue-recycle-scroller__item-view']//div[normalize-space(.)='"+name+"']"));
+    }
 
 }
