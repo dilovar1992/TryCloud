@@ -8,10 +8,11 @@ import org.openqa.selenium.Keys;
 
 public class ContactGroupFunctionality_stepDef_TD {
     ContactPage contactPage=new ContactPage();
-    @When("user click on plus sign")
-    public void user_click_on_plus_sign() {
+    @And("user click on New Group")
+    public void userClickOnNewGroup() {
         contactPage.addButton.click();
     }
+
     @When("user enters {string} as a group-name")
     public void user_enters_as_a_groupname(String string) {
         contactPage.inputGroupName.sendKeys(string+ Keys.ENTER);
@@ -22,4 +23,21 @@ public class ContactGroupFunctionality_stepDef_TD {
         System.out.println(contactPage.createdGroupName(groupName).getAttribute("title"));
         Assert.assertTrue(contactPage.createdGroupName(groupName).isDisplayed());
     }
+
+    //US08-2
+    @When("user clicks on {string} from all contacts")
+    public void user_clicks_on_from_all_contacs(String string) {
+
+    }
+    @When("user clicks on groups dropdown in contacts info page")
+    public void user_clicks_on_groups_dropdown_in_contacts_info_page() {
+
+    }
+    @Then("user sees list groups below under All Contacts in dropdown")
+    public void user_sees_list_groups_below_under_all_contacts_in_dropdown(io.cucumber.datatable.DataTable dataTable) {
+
+    }
+
+
+
 }

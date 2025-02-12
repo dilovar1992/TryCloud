@@ -70,4 +70,9 @@ public class ContactPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//a[@class='app-navigation-entry-link']//span[@title='"+str+"']"));
     }
 
+    //choose any contacts by name
+    public WebElement getContactName(String name){
+        return Driver.getDriver().findElement(By.xpath("//div[@class='vue-recycle-scroller__item-view']//div[normalize-space(.)='"+name+"']"));
+    }
+
 }
