@@ -3,6 +3,8 @@ package com.trycloud.stepDefinitions;
 
 import com.trycloud.pages.ContactPage;
 import io.cucumber.java.en.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactGroupFunctionality_stepDef_TD {
-    //ADD LOG
+    Logger LOG = LogManager.getLogger();
     ContactPage contactPage = new ContactPage();
 
     @And("user click on New Group")
@@ -49,6 +51,7 @@ public class ContactGroupFunctionality_stepDef_TD {
         for (String groupName : expectedGroupNames) {
             actualGroupNames.add(contactPage.getGroupName(groupName).getText());
         }
+        LOG.info(actualGroupNames);
         Assert.assertEquals(actualGroupNames, expectedGroupNames);
 
 
