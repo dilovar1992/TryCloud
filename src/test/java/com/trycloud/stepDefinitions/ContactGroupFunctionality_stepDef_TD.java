@@ -19,8 +19,8 @@ public class ContactGroupFunctionality_stepDef_TD {
     }
 
     @When("user enters {string} as a group-name")
-    public void user_enters_as_a_groupname(String string) {
-        contactPage.inputGroupName.sendKeys(string + Keys.ENTER);
+    public void user_enters_as_a_groupname(String name) {
+        contactPage.inputGroupName.sendKeys(name + Keys.ENTER);
     }
 
     @Then("user sees the {string} group created on the left side of the page")
