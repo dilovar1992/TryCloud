@@ -75,4 +75,6 @@ public class ContactPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//div[@class='vue-recycle-scroller__item-view']//div[normalize-space(.)='"+name+"']"));
     }
 
+    @FindBy(xpath="//div[@class='multiselect__tags']//input[normalize-space(@placeholder)='Add contact in group']")
+    public WebElement dropdown;
 }

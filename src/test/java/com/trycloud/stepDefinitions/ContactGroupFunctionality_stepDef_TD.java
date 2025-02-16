@@ -7,7 +7,8 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
 public class ContactGroupFunctionality_stepDef_TD {
-    ContactPage contactPage=new ContactPage();
+    ContactPage contactPage = new ContactPage();
+
     @And("user click on New Group")
     public void userClickOnNewGroup() {
         contactPage.addButton.click();
@@ -15,7 +16,7 @@ public class ContactGroupFunctionality_stepDef_TD {
 
     @When("user enters {string} as a group-name")
     public void user_enters_as_a_groupname(String string) {
-        contactPage.inputGroupName.sendKeys(string+ Keys.ENTER);
+        contactPage.inputGroupName.sendKeys(string + Keys.ENTER);
     }
 
     @Then("user sees the {string} group created on the left side of the page")
@@ -26,18 +27,21 @@ public class ContactGroupFunctionality_stepDef_TD {
 
     //US08-2
     @When("user clicks on {string} from all contacts")
-    public void user_clicks_on_from_all_contacs(String string) {
+    public void user_clicks_on_from_all_contacs(String contactName) {
+        contactPage.getContactName(contactName).click();
 
     }
+
     @When("user clicks on groups dropdown in contacts info page")
     public void user_clicks_on_groups_dropdown_in_contacts_info_page() {
+        contactPage.dropdown.click();
 
     }
+
     @Then("user sees list groups below under All Contacts in dropdown")
     public void user_sees_list_groups_below_under_all_contacts_in_dropdown(io.cucumber.datatable.DataTable dataTable) {
 
     }
-
 
 
 }
