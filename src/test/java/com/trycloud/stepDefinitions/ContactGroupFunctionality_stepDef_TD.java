@@ -6,7 +6,11 @@ import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactGroupFunctionality_stepDef_TD {
+    //ADD LOG
     ContactPage contactPage = new ContactPage();
 
     @And("user click on New Group")
@@ -39,7 +43,14 @@ public class ContactGroupFunctionality_stepDef_TD {
     }
 
     @Then("user sees list groups below under All Contacts in dropdown")
-    public void user_sees_list_groups_below_under_all_contacts_in_dropdown(io.cucumber.datatable.DataTable dataTable) {
+    public void user_sees_list_groups_below_under_all_contacts_in_dropdown(List<String> expectedGroupNames) {
+        List<String> actualGroupNames = new ArrayList<>();
+
+        for (String groupName : expectedGroupNames) {
+            actualGroupNames.add(contactPage.getGroupName(groupName).getText());
+        }
+        Assert.assertEquals(actualGroupNames, expectedGroupNames);
+
 
     }
 
