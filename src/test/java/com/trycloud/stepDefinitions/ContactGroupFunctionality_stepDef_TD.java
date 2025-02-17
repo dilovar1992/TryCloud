@@ -3,10 +3,16 @@ package com.trycloud.stepDefinitions;
 
 import com.trycloud.pages.ContactPage;
 import io.cucumber.java.en.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactGroupFunctionality_stepDef_TD {
+    Logger LOG = LogManager.getLogger();
     ContactPage contactPage = new ContactPage();
 
     @And("user click on New Group")
@@ -15,8 +21,8 @@ public class ContactGroupFunctionality_stepDef_TD {
     }
 
     @When("user enters {string} as a group-name")
-    public void user_enters_as_a_groupname(String string) {
-        contactPage.inputGroupName.sendKeys(string + Keys.ENTER);
+    public void user_enters_as_a_groupname(String name) {
+        contactPage.inputGroupName.sendKeys(name + Keys.ENTER);
     }
 
     @Then("user sees the {string} group created on the left side of the page")
@@ -39,7 +45,15 @@ public class ContactGroupFunctionality_stepDef_TD {
     }
 
     @Then("user sees list groups below under All Contacts in dropdown")
-    public void user_sees_list_groups_below_under_all_contacts_in_dropdown(io.cucumber.datatable.DataTable dataTable) {
+    public void user_sees_list_groups_below_under_all_contacts_in_dropdown(List<String> expectedGroupNames) {
+        List<String> actualGroupNames = new ArrayList<>();
+
+        for (String groupName : expectedGroupNames) {
+            actualGroupNames.add(contactPage.getGroupName(groupName).getText());
+        }
+        LOG.info(actualGroupNames);
+        Assert.assertEquals(actualGroupNames, expectedGroupNames);
+
 
     }
 
