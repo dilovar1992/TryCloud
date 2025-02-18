@@ -78,7 +78,7 @@ public class ContactPage extends BasePage {
     @FindBy(xpath="//div[@class='multiselect__tags']//input[normalize-space(@placeholder)='Add contact in group']")
     public WebElement dropdown;
 
-    public WebElement getGroupName(String name){
-        return Driver.getDriver().findElement(By.xpath("//li[@class='multiselect__element']//span[.='"+name+"']"));
-    }
+
+    @FindBy(xpath = "//div[@Class ='property__label' and text()[contains(.,'Groups')]]/..//span[@Class='name-parts__first']")
+    public List<WebElement> groupNames;
 }

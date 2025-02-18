@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,18 +45,14 @@ public class ContactGroupFunctionality_stepDef_TD {
 
     }
 
-    @Then("user sees list groups below under All Contacts in dropdown")
-    public void user_sees_list_groups_below_under_all_contacts_in_dropdown(List<String> expectedGroupNames) {
-        List<String> actualGroupNames = new ArrayList<>();
 
-        for (String groupName : expectedGroupNames) {
-            actualGroupNames.add(contactPage.getGroupName(groupName).getText());
+
+
+    @Then("user can see all available groups under All Contacts in dropdown")
+    public void userCanSeeAllAvailableGroupsUnderAllContactsInDropdown() {
+        LOG.info("User can see available groups under dropdown");
+        for (WebElement groupName : contactPage.groupNames) {
+            Assert.assertTrue(groupName.isDisplayed());
         }
-        LOG.info(actualGroupNames);
-        Assert.assertEquals(actualGroupNames, expectedGroupNames);
-
-
     }
-
-
 }

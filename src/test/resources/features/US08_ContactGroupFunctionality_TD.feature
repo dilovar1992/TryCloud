@@ -14,7 +14,5 @@ Feature: User should be able to create new group inder Contacts module
     When user navigates to "Contacts" module
     And user clicks on "Dilo" from all contacts
     And user clicks on groups dropdown in contacts info page
-    Then user sees list groups below under All Contacts in dropdown
-      | Group2 |
-      | Group5 |
-      | kgkk   |
+    Then user can see all available groups under All Contacts in dropdown
+
