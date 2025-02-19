@@ -79,6 +79,20 @@ public class ContactPage extends BasePage {
     public WebElement dropdown;
 
 
-    @FindBy(xpath = "//div[@Class ='property__label' and text()[contains(.,'Groups')]]/..//span[@Class='name-parts__first']")
+    @FindBy(xpath = "//div[@class ='property__label' and text()[contains(.,'Groups')]]/..//span[@class='name-parts__first']")
     public List<WebElement> groupNames;
+
+    //US08-3
+    @FindBy(xpath = "//input[normalize-space(@placeholder)='Choose property type']")
+    public WebElement addNewProperty;
+
+    public WebElement selectFromNewPropertyDropdown(String str ) {
+        return Driver.getDriver().findElement(By.xpath("(//ul[@class='multiselect__content'])[7]//div[contains(@title, '"+str+"')]"));
+    }
+
+    public WebElement addedNewProperty(String property ) {
+        return Driver.getDriver().findElement(By.xpath("//h3[@class='property__title property__row']//div[normalize-space(text())='"+property+"']"));
+    }
+
+
 }
