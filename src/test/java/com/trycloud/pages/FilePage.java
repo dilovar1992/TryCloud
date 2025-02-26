@@ -80,4 +80,4 @@ public class FilePage extends BasePage {
         }
         return Driver.getDriver().findElement(By.xpath(locator));
     }
-}
+
