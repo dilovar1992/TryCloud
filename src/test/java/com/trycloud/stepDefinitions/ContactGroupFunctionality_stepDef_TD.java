@@ -60,16 +60,20 @@ public class ContactGroupFunctionality_stepDef_TD {
     //US08-3
     @When("user clicks on Add new property dropdown in contacts info page")
     public void user_clicks_on_add_new_property_dropdown_in_contacts_info_page() {
+        BrowserUtil.sleep(3);
         contactPage.addNewProperty.click();
+        LOG.info("clicked success");
     }
     @When("user selects {string} from dropdown")
     public void user_selects_from_dropdown(String newProperty) {
+
         contactPage.selectFromNewPropertyDropdown(newProperty).click();
+
     }
     @Then("user sees the {string} property added in contacts info page")
     public void user_sees_the_property_added_in_contacts_info_page(String expectedNewProperty) {
-       // BrowserUtil.waitForElementVisibility(contactPage.addedNewProperty(addedNewProperty));
-        BrowserUtil.sleep(5);
+
+
         Assert.assertTrue(contactPage.addedNewProperty(expectedNewProperty).isDisplayed());
 
     }

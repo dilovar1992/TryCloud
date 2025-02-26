@@ -87,7 +87,7 @@ public class ContactPage extends BasePage {
     public WebElement addNewProperty;
 
     public WebElement selectFromNewPropertyDropdown(String str ) {
-        return Driver.getDriver().findElement(By.xpath("(//ul[@class='multiselect__content'])[7]//div[contains(@title, '"+str+"')]"));
+        return Driver.getDriver().findElement(By.xpath("//input[@placeholder='Choose property type']/../following-sibling::div//div[@title='"+str+"']"));
     }
 
     public WebElement addedNewProperty(String property ) {
