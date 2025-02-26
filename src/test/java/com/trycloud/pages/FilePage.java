@@ -91,4 +91,10 @@ public class FilePage extends BasePage {
 
     }
 
+    //US10
+    @FindBy(xpath = "//th[@id='headerName-container']//a/span[.='Name']")
+    public WebElement ellipsesNameInput;
+
+
+
 }
