@@ -1,4 +1,4 @@
-@US02
+@US02 #cannot implement due to robot class issues with MacOS
 Feature: User should be able to upload, edit and delete file from Files module
 
   @US02AC1

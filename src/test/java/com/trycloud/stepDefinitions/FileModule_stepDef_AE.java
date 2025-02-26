@@ -6,13 +6,7 @@ import com.trycloud.utility.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_old.Ac;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-
-import javax.tools.Tool;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -31,12 +25,7 @@ public class FileModule_stepDef_AE {
     @When("user select Upload file from new item menu")
     public void user_select_upload_file_from_new_item_menu() throws AWTException {
 
-//        Actions actions = new Actions(Driver.getDriver());
-//        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-//        js.executeScript("arguments[0].click();", filePage.chooseMenuItem("Upload file"));
-
         filePage.chooseMenuItem("Upload file").click(); //click with JavaScriptExecutor if this don't work,
-
 
         //after OS window opens
         String filePath = "/Users/michealthonton/Downloads/brother.jpeg";
@@ -53,15 +42,10 @@ public class FileModule_stepDef_AE {
         Robot robot = new Robot(); //declare awt exception
 
 //        robot.keyPress(KeyEvent.VK_META);
-//
 //        robot.keyPress(KeyEvent.VK_TAB);
-//
 //        robot.keyRelease(KeyEvent.VK_META);
-//
 //        robot.keyRelease(KeyEvent.VK_TAB);
-//
 //        robot.delay(500);
-
 
         //to achieve control+V action, press CTRL, then press V, then release V, and release CTRL
         //robot.keyPress(KeyEvent.VK_CONTROL); //for windows
@@ -109,31 +93,30 @@ public class FileModule_stepDef_AE {
         BrowserUtil.sleep(2);
     }
 
-
     @When("user clicks submit button")
     public void user_clicks_submit_button() {
+
         filePage.folderNameSubmit.click();
     }
 
     @When("user clicks ellipses on any file")
     public void user_clicks_ellipses_on_any_file() {
+
         BrowserUtil.waitForElementVisibility(filePage.ellipsesFirstFile);
         filePage.ellipsesFirstFile.click();
-
     }
 
     @When("user clicks {string} from the ellipses menu")
     public void user_clicks_from_the_ellipses_menu(String menuItem) {
+
         filePage.selectElipsesMenuItem(menuItem).click();
     }
 
     @Then("user should not see the deleted file {string} under the files list")
     public void user_should_not_see_the_deleted_file_under_the_files_list(String fileName) {
+
         List<String> fileNamesList = BrowserUtil.getTextOfElements(filePage.fileNamesList);
-
         Assert.assertFalse(fileNamesList.contains(fileName));
-
-
     }
 
     @Then("user sees the total number of files and folders")
@@ -141,9 +124,9 @@ public class FileModule_stepDef_AE {
 
     }
 
-
     @And("user refreshes the page")
     public void userRefreshesThePage() {
+
         Driver.getDriver().navigate().refresh();
     }
 

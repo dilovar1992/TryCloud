@@ -3,10 +3,9 @@
 # Try Cloud UI test
 
 ### Whether it is small or big, every commit is a step towards defining your feature.
-I hope this project will be useful to you. Please take responsibility of your task and finish in timely manner.
 
 #
-<img src="https://i.pinimg.com/originals/98/90/54/989054cca8af0c7f60c7fad86d077c36.gif" height="200" />
+<img src="https://i.pinimg.com/originals/84/db/7b/84db7b84c417b45d291e0a78b6d84f30.gif" height="300" />
 
 
 

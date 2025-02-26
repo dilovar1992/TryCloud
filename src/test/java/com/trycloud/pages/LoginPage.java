@@ -16,26 +16,25 @@ public class LoginPage extends BasePage{
 
     @FindBy(css=".warning.wrongPasswordMsg")
     public WebElement wrongEmailAndPass;
+
     @FindBy(css=".toggle-password")
     public WebElement showPasswordIcon;
 
     //method for warning messages
     public String warningMessage(String str){
+
         if (str.startsWith("Wrong")){
             return wrongEmailAndPass.getText();
         } else if (str.startsWith("Please")) {
            return passwordBox.getAttribute("validationMessage");
-
         }
         return "";
     }
 
-
     public void login(String username,String password){
+
         usernameBox.sendKeys(username);
         passwordBox.sendKeys(password);
         logInButton.click();
     }
-
-
 }

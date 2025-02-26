@@ -19,11 +19,9 @@ public class Hooks {
     @Before
     public void setupMethod() {
 
-
      getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
      getDriver().manage().window().maximize();
      getDriver().get(ConfigurationReader.getProperty("url"));
-
     }
 
     /*
@@ -33,10 +31,8 @@ public class Hooks {
     public void teardownMethod(Scenario scenario) {
 
         if (scenario.isFailed()) {
-
             byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
-
         }
 
         BrowserUtil.sleep(2);

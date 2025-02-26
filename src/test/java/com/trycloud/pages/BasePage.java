@@ -40,9 +40,6 @@ public abstract class BasePage {
 
         WebElement moduleLink = Driver.getDriver().findElement(By.cssSelector("ul[id='appmenu']>li>a[aria-label='" + module + "']"));
 
-        //explicit wait
-        //TODO
-
         moduleLink.click();
     }
 }
