@@ -6,5 +6,5 @@ Feature: User be able to change folder view
     When user navigates to "Files" module
 
   Scenario: user can change folder view order by Name
-    And user clicks "Name" located above all files and folder
-    Then user can see the list in alphabetical order
+    And user clicks Name located above all files and folder
+    Then user can see the list sorted in alphabetical order
