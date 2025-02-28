@@ -3,16 +3,19 @@ package com.trycloud.stepDefinitions;
 import com.trycloud.pages.FolderViewPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FolderView_stepDef_TD {
-    FolderViewPage folderViewPage=new FolderViewPage();
-    List<String> fileNamesActual=new ArrayList<String>();
+    FolderViewPage folderViewPage = new FolderViewPage();
+    List<String> fileNamesActual = new ArrayList<String>();
+    Logger LOG = LogManager.getLogger();
+
     @And("user clicks Name located above all files and folder")
     public void userClicksNameLocatedAboveAllFilesAndFolder() {
         //before sort
@@ -22,21 +25,29 @@ public class FolderView_stepDef_TD {
         }
 
 
-
         folderViewPage.sortByName.click();
     }
 
     @Then("user can see the list sorted in alphabetical order")
     public void user_can_see_the_list_sorted_in_alphabetical_order() {
-        Collections.sort(fileNamesActual);
-        List<String> fileNameExpected=new ArrayList<>();
-        for (WebElement filename : folderViewPage.fileNameList) {
-            fileNameExpected.add(filename.getText());
-        }
-        System.out.println(fileNameExpected);
-        System.out.println(fileNamesActual);
-        //we need a solution to verify
 
+        // Copy actual list and sort it to get the expected order
+        List<String> fileNamesExpected = new ArrayList<>(fileNamesActual);
+        fileNamesExpected.sort(String.CASE_INSENSITIVE_ORDER);
+
+
+        // Get the new sorted list from UI
+        List<String> fileNamesFromUI = new ArrayList<>();
+        for (WebElement filename : folderViewPage.fileNameList) {
+            fileNamesFromUI.add(filename.getText());
+        }
+
+
+        LOG.info("Expected Sorted List: {}", fileNamesExpected);
+        LOG.info("Actual UI List: {}", fileNamesFromUI);
+
+        Assert.assertEquals("File list is not sorted correctly!",fileNamesExpected,fileNamesFromUI);
+        LOG.info("after second attempt the assertion passes");
     }
 
 
