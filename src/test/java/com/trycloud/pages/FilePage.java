@@ -28,7 +28,7 @@ public class FilePage extends BasePage {
     public WebElement folderNameSubmit;
 
     @FindBy(xpath = "(//span[@class='fileactions']/a[@data-action='menu'])[2]")
-    public WebElement ellipsesFirstFile ;
+    public WebElement ellipsesFirstFile;
 
     @FindBy(xpath = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[@class='innernametext']")
     public List<WebElement> fileNamesList;
@@ -49,15 +49,15 @@ public class FilePage extends BasePage {
         }
     }
 
-    public WebElement findFile (String fileName){
-        String locator = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[text()='" +fileName+"']";
+    public WebElement findFile(String fileName) {
+        String locator = "//div[@id='app-content-files']//tbody[@id='fileList']//td//span[text()='" + fileName + "']";
 
         return Driver.getDriver().findElement(By.xpath(locator));
     }
 
-    public WebElement selectElipsesMenuItem (String itemName){
+    public WebElement selectElipsesMenuItem(String itemName) {
         String locator = "";
-        switch (itemName){
+        switch (itemName) {
 
             case "Add to favorites":
                 locator = "//div[@class='fileActionsMenu popovermenu bubble open menu']//a[@data-action='Favorite']";
@@ -80,4 +80,6 @@ public class FilePage extends BasePage {
         }
         return Driver.getDriver().findElement(By.xpath(locator));
     }
+
+}
 
