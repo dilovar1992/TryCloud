@@ -51,4 +51,12 @@ public class FolderView_stepDef_TD {
     }
 
 
+    @And("user clicks  located above all files and folder")
+    public void userClicksLocatedAboveAllFilesAndFolder() {
+        
+    }
+
+    @Then("user can see the list sorted in descending order")
+    public void userCanSeeTheListSortedInDescendingOrder() {
+    }
 }
