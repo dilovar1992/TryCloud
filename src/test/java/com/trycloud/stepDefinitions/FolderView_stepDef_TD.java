@@ -31,9 +31,9 @@ public class FolderView_stepDef_TD {
         folderViewPage.sortByName.click();
     }
 
-    @Then("user can see the list sorted in alphabetical order")
-    public void user_can_see_the_list_sorted_in_alphabetical_order() {
 
+    @Then("user can see the list of files sorted in alphabetical order")
+    public void userCanSeeTheListOfFilesSortedInAlphabeticalOrder() {
         // Copy actual list and sort it to get the expected order
         List<String> fileNamesExpected = new ArrayList<>(fileNamesActual);
         fileNamesExpected.sort(String.CASE_INSENSITIVE_ORDER);
@@ -56,23 +56,27 @@ public class FolderView_stepDef_TD {
 
     //US10-02 AI assisted
 
-    @Then("user can see the list sorted in descending order")
-    public void userCanSeeTheListSortedInDescendingOrder() {
-       fileSizeActual= BrowserUtil.getTextOfElements(folderViewPage.fileSizeList);
+
+
+    @And("user clicks Size located above all files and folder")
+    public void userClicksSizeLocatedAboveAllFilesAndFolder() {
+        fileSizeActual= BrowserUtil.getTextOfElements(folderViewPage.fileSizeList);
 
 
         BrowserUtil.sleep(2);
         folderViewPage.sortBySize.click();
+
+
     }
 
-    @And("user clicks Size located above all files and folder")
-    public void userClicksSizeLocatedAboveAllFilesAndFolder() {
+    @Then("user can see the list of files sorted in descending order")
+    public void userCanSeeTheListOfFilesSortedInDescendingOrder() {
         fileSizeActual = BrowserUtil.getTextOfElements(folderViewPage.fileSizeList);
         System.out.println("Actual List Before Sorting: " + fileSizeActual);
 
         // Create a copy and sort it in descending order
         List<String> fileSizeExpected = new ArrayList<>(fileSizeActual);
-        Collections.sort(fileSizeExpected, Collections.reverseOrder());  // Fix: Sorting in descending order
+        Collections.sort(fileSizeExpected);  // Fix: Sorting in descending order
         System.out.println("Expected Sorted List: " + fileSizeExpected);
 
         BrowserUtil.sleep(2);
@@ -86,7 +90,18 @@ public class FolderView_stepDef_TD {
 
         // Assertion to check if the UI list matches the expected sorted list
         Assert.assertEquals("List is not sorted correctly in descending order!", fileSizeExpected, fileSizeFromUI);
-
-
     }
+
+
+
+    //US10-3
+    @And("user clicks Modified located on the right end,above all files and folder")
+    public void userClicksModifiedLocatedOnTheRightEndAboveAllFilesAndFolder() {
+    }
+
+    @Then("the files are displayed in descending order by date")
+    public void theFilesAreDisplayedInDescendingOrderByDate() {
+    }
+
+
 }
