@@ -10,6 +10,10 @@ public class FolderViewPage extends BasePage {
     public WebElement sortByName;
     @FindBy(xpath = "//tbody[@id='fileList']//tr[@data-type='dir']//span[@class='innernametext']")
     public List<WebElement> fileNameList;
+
+    @FindBy(xpath = "//div[@id='app-content-files']//th[@id='headerSize']//a/span[.='Size']")
+    public WebElement sortBySize;
+    @FindBy(xpath = " //tbody[@id='fileList']//tr[@data-type='dir']//td[@class='filesize']")
+    public List<WebElement> fileSizeList;
+
 }
-//
-//tbody[@id='fileList']//tr//span[@class='innernametext']
