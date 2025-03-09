@@ -2,6 +2,7 @@ package com.trycloud.stepDefinitions;
 
 import com.trycloud.pages.FolderViewPage;
 import com.trycloud.utility.BrowserUtil;
+import com.trycloud.utility.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.apache.logging.log4j.LogManager;
@@ -9,14 +10,18 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FolderView_stepDef_TD {
     FolderViewPage folderViewPage = new FolderViewPage();
     List<String> fileNamesActual = new ArrayList<String>();
-    List<String> fileSizeActual=new ArrayList<>();
+    List<String> fileSizeActual = new ArrayList<>();
+    List<String> fileModifiedActual = new ArrayList<>();
     Logger LOG = LogManager.getLogger();
 
     @And("user clicks Name located above all files and folder")
@@ -49,7 +54,7 @@ public class FolderView_stepDef_TD {
         LOG.info("Expected Sorted List: {}", fileNamesExpected);
         LOG.info("Actual UI List: {}", fileNamesFromUI);
 
-        Assert.assertEquals("File list is not sorted correctly!",fileNamesExpected,fileNamesFromUI);
+        Assert.assertEquals("File list is not sorted correctly!", fileNamesExpected, fileNamesFromUI);
         LOG.info("after second attempt the assertion passes");
     }
 
@@ -57,10 +62,9 @@ public class FolderView_stepDef_TD {
     //US10-02 AI assisted
 
 
-
     @And("user clicks Size located above all files and folder")
     public void userClicksSizeLocatedAboveAllFilesAndFolder() {
-        fileSizeActual= BrowserUtil.getTextOfElements(folderViewPage.fileSizeList);
+        fileSizeActual = BrowserUtil.getTextOfElements(folderViewPage.fileSizeList);
 
 
         BrowserUtil.sleep(2);
@@ -71,16 +75,14 @@ public class FolderView_stepDef_TD {
 
     @Then("user can see the list of files sorted in descending order")
     public void userCanSeeTheListOfFilesSortedInDescendingOrder() {
-        fileSizeActual = BrowserUtil.getTextOfElements(folderViewPage.fileSizeList);
+
         System.out.println("Actual List Before Sorting: " + fileSizeActual);
 
         // Create a copy and sort it in descending order
         List<String> fileSizeExpected = new ArrayList<>(fileSizeActual);
-        Collections.sort(fileSizeExpected);  // Fix: Sorting in descending order
+        Collections.sort(fileSizeExpected, Collections.reverseOrder());  // Fix: Sorting in descending order
         System.out.println("Expected Sorted List: " + fileSizeExpected);
 
-        BrowserUtil.sleep(2);
-        folderViewPage.sortBySize.click();  // Clicking after capturing expected list
 
         BrowserUtil.sleep(2);
 
@@ -93,14 +95,41 @@ public class FolderView_stepDef_TD {
     }
 
 
-
     //US10-3
     @And("user clicks Modified located on the right end,above all files and folder")
     public void userClicksModifiedLocatedOnTheRightEndAboveAllFilesAndFolder() {
+        fileModifiedActual = BrowserUtil.getTextOfElements(folderViewPage.fileModifiedList);
+        BrowserUtil.sleep(5);
+        // Refresh to reset sorting state before clicking
+        Driver.getDriver().navigate().refresh();
+        BrowserUtil.sleep(2);
+
+        folderViewPage.sortByModified.click();
+        BrowserUtil.sleep(2);
+       // folderViewPage.sortByModified.click();
     }
 
     @Then("the files are displayed in descending order by date")
     public void theFilesAreDisplayedInDescendingOrderByDate() {
+        List<String> fileModifiedExpected = new ArrayList<>(fileModifiedActual);
+
+        // Convert string dates to actual comparable dates
+        List<LocalDate> expectedDates = fileModifiedExpected.stream()
+                .map(folderViewPage::convertToDate) // Custom method to convert "4 months ago" to a LocalDate
+                .sorted(Comparator.reverseOrder()) // Sort in descending order
+                .collect(Collectors.toList());
+
+        List<String> fileSizeFromUI = BrowserUtil.getTextOfElements(folderViewPage.fileModifiedList);
+        List<LocalDate> actualDates = fileSizeFromUI.stream()
+                .map(folderViewPage::convertToDate)
+                .collect(Collectors.toList());
+
+        //Collections.reverse(actualDates);
+        System.out.println("Expected (Descending): " + expectedDates);
+        System.out.println("Actual (From UI): " + actualDates);
+
+        Assert.assertEquals("Files are not sorted correctly by modified date!", expectedDates, actualDates);
+
     }
 
 
